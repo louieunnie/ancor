@@ -1,5 +1,7 @@
 *.sh
 config.py
 __pycache__
-pipeline/context-enhanced-MNER/runs/*
-pipeline/context-enhanced-MNER/logs/*
+**/runs/*
+**/logs/*
+**.pt
+**/grounding7.py
