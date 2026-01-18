@@ -1,7 +1,7 @@
-from dataset import GroundingDataset, InferenceDataset
-from collator import collate_fn, collate_fn_infer
-from model import GroundingModel, train_one_epoch
-from evaluate import evaluate_dev, inference_and_save
+from src.dataset import GroundingDataset, InferenceDataset
+from src.collator import collate_fn, collate_fn_infer
+from src.model import GroundingModel, train_one_epoch
+from src.evaluate import evaluate_dev, inference_and_save
 from config import train_json, dev_json, test_json, npz_dir, img_dir
 import torch
 from torch.utils.data import DataLoader

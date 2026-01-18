@@ -1,9 +1,9 @@
 import torch
 from torch.utils.data import DataLoader
-from collator import collate_fn_infer
-from dataset import InferenceDataset
-from model import GroundingModel
-from evaluate import inference_and_save
+from src.collator import collate_fn_infer
+from src.dataset import InferenceDataset
+from src.model import GroundingModel
+from src.evaluate import inference_and_save
 from config import npz_dir, img_dir, model_path, save_path
 # from grounding7 import InferenceDataset, collate_fn_infer, GroundingModel, inference_and_save
 

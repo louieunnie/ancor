@@ -1,7 +1,6 @@
-*.sh
+run.sh
 __pycache__
 **/runs/*
 **/logs/*
 **.pt
-**/grounding7.py
 **/config.py

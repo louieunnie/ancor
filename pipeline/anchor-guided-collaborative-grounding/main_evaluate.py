@@ -7,7 +7,7 @@ def load_jsonl(path):
         return [json.loads(line) for line in f]
 
 def load_gold_boxes(xml_path, entity_text):
-    """xml 파일에서 특정 엔티티의 bounding boxes 로드"""
+    """load bounding boxes for a specific entity from an XML file"""
     if not os.path.exists(xml_path):
         return None
     root = ET.parse(xml_path).getroot()
@@ -16,7 +16,7 @@ def load_gold_boxes(xml_path, entity_text):
         name_node = obj.find("name")
         if name_node is None:
             continue
-        if name_node.text.strip() == entity_text:   # 같은 엔티티 이름만 확인
+        if name_node.text.strip() == entity_text: 
             bndbox = obj.find("bndbox")
             if bndbox is not None:
                 xmin = int(bndbox.find("xmin").text)
@@ -40,7 +40,6 @@ def evaluate(pred_file, gold_file, xml_dir, iou_thresh=0.5):
     preds = load_jsonl(pred_file)
     golds = load_jsonl(gold_file)
 
-    # pred dict 구성
     pred_dict = {}
     for p in preds:
         img_id = p.get("image") or p.get("img_id")
@@ -70,10 +69,10 @@ def evaluate(pred_file, gold_file, xml_dir, iou_thresh=0.5):
             g_text = gold_ent["text"]
             g_type = gold_ent["type"]
 
-            # xml에서 gold box 불러오기
+            # load gold boxes from xml
             g_boxes = load_gold_boxes(xml_path, g_text) if has_xml else None
 
-            # pred 중 entity+type 매칭
+            # match pred by entity+type
             matched_pred = None
             for p in pred_entities:
                 if p.get("entity") == g_text and p.get("ent_type") == g_type:
@@ -89,7 +88,7 @@ def evaluate(pred_file, gold_file, xml_dir, iou_thresh=0.5):
 
             # ----------------- SpanRegion -----------------
             span_match = [p for p in pred_entities if p.get("entity") == g_text]
-            if g_boxes is None:  # gold box 없음 (NONE)
+            if g_boxes is None:  # NONE
                 if span_match and span_match[0].get("pred_box") is None:
                     metrics["SpanRegion"]["TP"] += 1
                 elif span_match and span_match[0].get("pred_box") is not None:
@@ -97,7 +96,7 @@ def evaluate(pred_file, gold_file, xml_dir, iou_thresh=0.5):
                     error_types["Null2Box"] += 1
                 else:
                     metrics["SpanRegion"]["FN"] += 1
-            else:  # gold box 있음
+            else:  # gold_box
                 if not span_match:
                     metrics["SpanRegion"]["FN"] += 1
                     error_types["Box2Null"] += 1
@@ -123,7 +122,7 @@ def evaluate(pred_file, gold_file, xml_dir, iou_thresh=0.5):
                     error_types["Null2Box"] += 1
                 else:
                     metrics["GMNER"]["FN"] += 1
-            else:  # gold box 있음
+            else: # gold box exists
                 if matched_pred and matched_pred.get("pred_box") is not None:
                     ious = [compute_iou(matched_pred["pred_box"], gb) for gb in g_boxes]
                     if max(ious) >= iou_thresh:
@@ -134,12 +133,12 @@ def evaluate(pred_file, gold_file, xml_dir, iou_thresh=0.5):
                         error_types["WrongBox"] += 1
                 else:
                     metrics["GMNER"]["FN"] += 1
-                    if matched_pred:  # 엔티티/타입은 맞았는데 box만 없는 경우
+                    if matched_pred:  # entity/type match but box is missing
                         error_types["Box2Null"] += 1
-                    else:  # 아예 매칭되는 엔티티+타입 없음
+                    else:  # no matching entity+type at all
                         error_types["TypeError"] += 1
 
-    # ---------- PRED LOOP: FP 처리 ----------
+    # ---------- PRED LOOP: False Positive ----------
     for img_id, pred_entities in pred_dict.items():
         gold_entities = {(g["text"], g["type"]) for g in next((gg["entities"] for gg in golds if gg["image"] == img_id), [])}
         for p in pred_entities:
@@ -150,7 +149,7 @@ def evaluate(pred_file, gold_file, xml_dir, iou_thresh=0.5):
                 metrics["GMNER"]["FP"] += 1
                 error_types["TypeError"] += 1
 
-    # ---------- 점수 계산 ----------
+    # ---------- Score Calculation ----------
     def calc_scores(res):
         TP, FP, FN = res["TP"], res["FP"], res["FN"]
         prec = TP / (TP + FP) if TP + FP > 0 else 0
@@ -164,22 +163,9 @@ def evaluate(pred_file, gold_file, xml_dir, iou_thresh=0.5):
     return results
 
 if __name__ == "__main__":
-    # result = evaluate(
-    #     "/home/minjik9/noname3/grounding/grounding/grounding0922/test_pred_0930_thisthis!_withoutA!.jsonl",
-    #     # "test_pred_0930_no_anchloss.jsonl",
-    #     # "/home/minjik9/noname3/grounding/grounding/grounding0922/my_pred_0930_v2_withoutA!_v4.jsonl",
-    #     "/home/minjik9/noname3/grounding/results/2_visual_entity_knowledge/0922/output_test.jsonl",
-    #     "/home/minjik9/mqspn/mqspn-main/data/datasets/images_annotation"
-    # )
     result = evaluate(
-        # "/home/minjik9/noname3/grounding/grounding/grounding0922/fmnerg_1_test_2025-11-10_13-02-09.jsonl",
-        # "/home/minjik9/noname3/grounding/grounding/grounding0922/gmner_wo_anchors2.jsonl",
-        # "test_pred_0930_no_anchloss.jsonl",
-        # "gmner_ab_c3e15.jsonl",
-        # "/home/minjik9/noname3/grounding/grounding/grounding0922/test_pred_0930_thisthis!_withoutA!.jsonl",
-        "/home/minjik9/noname3/grounding/grounding/grounding0922/fmnerg_qwen257b_pred.jsonl",
-        # "/home/minjik9/noname3/grounding/results/2_visual_entity_knowledge/0922/output_test.jsonl",
-        "/home/minjik9/ANCHOR/data/grounding/grounding_test_fmnerg_.jsonl",
-        "/home/minjik9/mqspn/mqspn-main/data/datasets/images_annotation"
+        "your_prediction_file.jsonl",
+        "gold_jsonl_file.jsonl",
+        "path_to_xml_directory",
     )
     print(json.dumps(result, indent=2))
