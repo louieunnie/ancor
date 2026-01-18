@@ -10,14 +10,7 @@ from config import npz_dir, img_dir, model_path, save_path
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 def run_inference():
-
-    # test_json = "/home/minjik9/noname3/grounding/entailment/entailment0917/ver4/test10_2_preds_4-4-4.jsonl"
-    # test_json = "/home/minjik9/RiVEG/data_processing/VG_processing/merged_thisthis!!!.jsonl"
-    # test_json = "/home/minjik9/RiVEG/data_processing/VG_processing/my_pred_0930_/withoutA!.jsonl"
-    # test_json= "/home/minjik9/RiVEG/data_processing/VG_processing/OFAVE_to_OFAREC_fmnerg_1_test_2025-11-10_13-02-09_with_knowledge.jsonl"
-    test_json = "/home/minjik9/RiVEG/data_processing/VG_processing/OFAVE_to_OFAREC_fmnerg_qwen257b_pred_with_text.jsonl"
-    # test_json = "/home/minjik9/noname3/grounding/results/2_visual_entity_knowledge/0922/output_test_pred_label.jsonl"
-
+    test_json = "path_to_test_input_with_visual_knowledge.jsonl"
 
     test_ds = InferenceDataset(test_json, npz_dir, img_dir)
     test_loader = DataLoader(test_ds, batch_size=4, shuffle=False,

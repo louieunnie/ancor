@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
 import logging
-# from logging import StreamHandler
 import torch
 import torch.nn as nn
 from torch.utils.data import Dataset, DataLoader
@@ -110,9 +109,9 @@ def main():
     val_data   = load_bio_file(DEV_FILE_PATH, img_dir=IMG_DIR)
     test_data  = load_bio_file(TEST_FILE_PATH, img_dir=IMG_DIR)
 
-    train_knowledge = load_knowledge_map("/home/minjik9/noname3/final_w_knowledge/entity_knowledge/final_knowledge_train.jsonl")
-    val_knowledge   = load_knowledge_map("/home/minjik9/noname3/final_w_knowledge/entity_knowledge/final_knowledge_dev.jsonl")
-    test_knowledge  = load_knowledge_map("/home/minjik9/noname3/final_w_knowledge/entity_knowledge/final_knowledge_test.jsonl")
+    train_knowledge = load_knowledge_map("./input_data/example_train.jsonl")
+    val_knowledge   = load_knowledge_map("./input_data/example_dev.jsonl")
+    test_knowledge  = load_knowledge_map("./input_data/example_test.jsonl")
 
     train_data = merge_examples_with_knowledge(train_data, train_knowledge, tokenizer)
     val_data   = merge_examples_with_knowledge(val_data, val_knowledge, tokenizer)
