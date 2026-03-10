@@ -16,7 +16,11 @@ def run_inference():
     test_loader = DataLoader(test_ds, batch_size=4, shuffle=False,
                              collate_fn=collate_fn_infer, num_workers=0)
 
-    model = GroundingModel(temperature=0.8).to(DEVICE)
+    try:
+        from config import model_name
+    except Exception:
+        model_name = "roberta-large"
+    model = GroundingModel(temperature=0.8, model_name=model_name).to(DEVICE)
     model.load_state_dict(torch.load(model_path, map_location=DEVICE))
     model.eval()
     print(f"[INFO] Loaded model from {model_path}")
