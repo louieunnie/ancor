@@ -9,6 +9,7 @@ DATASET="${DATASET:-gmner}"  # gmner | fmnerg
 GOLD_DATA_ROOT="${GOLD_DATA_ROOT:-/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data}"
 MODEL_NAME="${MODEL_NAME:-roberta-large}"
 USE_XML_CLIP_REGIONS="${USE_XML_CLIP_REGIONS:-0}"
+USE_CLIP_REGION_ENCODER="${USE_CLIP_REGION_ENCODER:-0}"
 XML_DIR="${XML_DIR:-}"
 CLIP_MODEL_NAME="${CLIP_MODEL_NAME:-openai/clip-vit-base-patch32}"
 CLIP_DEVICE="${CLIP_DEVICE:-cpu}"
@@ -35,10 +36,12 @@ resolve_split_path() {
 }
 
 # Default train/dev/test based on DATASET, override allowed by env
-TRAIN_JSON="${TRAIN_JSON:-$(resolve_split_path train)}"
-DEV_JSON="${DEV_JSON:-$(resolve_split_path dev)}"
-TEST_JSON="${TEST_JSON:-$(resolve_split_path test)}"
-
+# TRAIN_JSON="${TRAIN_JSON:-$(resolve_split_path train)}"
+# DEV_JSON="${DEV_JSON:-$(resolve_split_path dev)}"
+# TEST_JSON="${TEST_JSON:-$(resolve_split_path test)}"
+TRAIN_JSON=/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/input_data/vk_v2_gpt41mini/train.jsonl
+DEV_JSON=/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/input_data/vk_v2_gpt41mini/dev.jsonl
+TEST_JSON=/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/input_data/vk_v2_gpt41mini/test.jsonl
 # Optional shared outputs
 MODEL_PATH="${MODEL_PATH:-${SCRIPT_DIR}/best_model.pt}"
 SAVE_PATH="${SAVE_PATH:-${SCRIPT_DIR}/runs/inference_results.jsonl}"
@@ -85,6 +88,7 @@ model_path = r"${MODEL_PATH}"
 save_path = r"${SAVE_PATH}"
 model_name = r"${MODEL_NAME}"
 use_xml_clip_regions = ${USE_XML_CLIP_REGIONS}
+use_clip_region_encoder = ${USE_CLIP_REGION_ENCODER}
 xml_dir = r"${XML_DIR}"
 clip_model_name = r"${CLIP_MODEL_NAME}"
 clip_device = r"${CLIP_DEVICE}"
@@ -99,6 +103,7 @@ echo "[INFO] IMG_DIR=${IMG_DIR}"
 echo "[INFO] NPZ_DIR=${NPZ_DIR}"
 echo "[INFO] MODEL_NAME=${MODEL_NAME}"
 echo "[INFO] USE_XML_CLIP_REGIONS=${USE_XML_CLIP_REGIONS}"
+echo "[INFO] USE_CLIP_REGION_ENCODER=${USE_CLIP_REGION_ENCODER}"
 if [[ "${USE_XML_CLIP_REGIONS}" == "1" ]]; then
   echo "[INFO] XML_DIR=${XML_DIR}"
   echo "[INFO] CLIP_MODEL_NAME=${CLIP_MODEL_NAME}"

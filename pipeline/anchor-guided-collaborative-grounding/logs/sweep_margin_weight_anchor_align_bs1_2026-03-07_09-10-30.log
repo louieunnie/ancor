@@ -1,0 +1,54 @@
+===== START M=0.0 W=0.05 TEST_OUT=/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_anchor_align_bs1_m0.0_w0.05_2026-03-07_09-10-30.jsonl =====
+[INFO] Wrote config.py
+[INFO] DATASET=gmner
+[INFO] TRAIN_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_train.jsonl
+[INFO] DEV_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_dev.jsonl
+[INFO] TEST_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_test.jsonl
+[INFO] IMG_DIR=/workspace/IJCAI2019_data/all_images
+[INFO] NPZ_DIR=/workspace/root/data2/twitter_images/all
+[INFO] MODEL_NAME=FacebookAI/xlm-roberta-large
+[INFO] USE_XML_CLIP_REGIONS=0
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train.py
+[HP] batch=1 epochs=6 lr=5e-06 temp=0.8 | seed=45 save_best=0 | use_xml_clip_regions=0 region_dim=2048 clip_model=openai/clip-vit-base-patch32 | w(ce=0.0,cons=0.0,excl=0.0,margin=1.0) | w(rt_pull=0.0,rt_push=0.0,anchor_align=0.05,proto_cons=0.0,mod_proto=0.0,tripod=0.0,multi_proto_cons=0.0,hybrid_proto_cons=0.0) | cons_alpha=0.65 cons_sim_thr=0.5 cons_target_pool=mean cons_hard_topk=0 cons_include_intra=0 excl_margin=0.3 excl_same_type_w=1.0 excl_diff_type_w=1.0 excl_topk=0 rank_margin=0.5 rank_topk=5 rt_neg_margin=0.2 rt_push_sim_weighted=0 rt_push_topk=0 rt_push_weight_power=1.0 rt_push_detach_weights=1 rt_groundability_weighted=0 rt_groundability_power=1.0 rt_groundability_min=0.0 rt_groundability_detach=1 anchor_align_margin=0.0 anchor_align_target_pool=max anchor_align_detach_target=1 anchor_align_include_anchor_entity=0 proto_cons_alpha=0.7 proto_min_support=2 mod_proto_alpha=0.7 mod_proto_min_support=2 tripod_margin=0.2 tripod_neg_topk=3 tripod_score_weighted_neg=1 multi_proto_alpha=0.7 multi_proto_k=3 multi_proto_min_support=2 multi_proto_assign_iters=2 hybrid_proto_alpha=0.7 hybrid_proto_k=3 hybrid_proto_min_support=2 hybrid_proto_assign_iters=2 hybrid_proto_beta=0.5 anchor_select_mode=mlp anchor_topk=1 anchor_softmax_temp=1.0 anchor_use_reliability=0 anchor_rel_gap_temp=0.1 use_multi_view=0 mv_w(ent=0.65,know=0.2,type=0.15,ctx=0.0)
+Terminated
+===== END M=0.0 W=0.05 =====
+===== START M=0.0 W=0.1 TEST_OUT=/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_anchor_align_bs1_m0.0_w0.1_2026-03-07_09-12-54.jsonl =====
+[INFO] Wrote config.py
+[INFO] DATASET=gmner
+[INFO] TRAIN_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_train.jsonl
+[INFO] DEV_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_dev.jsonl
+[INFO] TEST_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_test.jsonl
+[INFO] IMG_DIR=/workspace/IJCAI2019_data/all_images
+[INFO] NPZ_DIR=/workspace/root/data2/twitter_images/all
+[INFO] MODEL_NAME=FacebookAI/xlm-roberta-large
+[INFO] USE_XML_CLIP_REGIONS=0
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train.py
+[HP] batch=1 epochs=6 lr=5e-06 temp=0.8 | seed=45 save_best=0 | use_xml_clip_regions=0 region_dim=2048 clip_model=openai/clip-vit-base-patch32 | w(ce=0.0,cons=0.0,excl=0.0,margin=1.0) | w(rt_pull=0.0,rt_push=0.0,anchor_align=0.1,proto_cons=0.0,mod_proto=0.0,tripod=0.0,multi_proto_cons=0.0,hybrid_proto_cons=0.0) | cons_alpha=0.65 cons_sim_thr=0.5 cons_target_pool=mean cons_hard_topk=0 cons_include_intra=0 excl_margin=0.3 excl_same_type_w=1.0 excl_diff_type_w=1.0 excl_topk=0 rank_margin=0.5 rank_topk=5 rt_neg_margin=0.2 rt_push_sim_weighted=0 rt_push_topk=0 rt_push_weight_power=1.0 rt_push_detach_weights=1 rt_groundability_weighted=0 rt_groundability_power=1.0 rt_groundability_min=0.0 rt_groundability_detach=1 anchor_align_margin=0.0 anchor_align_target_pool=max anchor_align_detach_target=1 anchor_align_include_anchor_entity=0 proto_cons_alpha=0.7 proto_min_support=2 mod_proto_alpha=0.7 mod_proto_min_support=2 tripod_margin=0.2 tripod_neg_topk=3 tripod_score_weighted_neg=1 multi_proto_alpha=0.7 multi_proto_k=3 multi_proto_min_support=2 multi_proto_assign_iters=2 hybrid_proto_alpha=0.7 hybrid_proto_k=3 hybrid_proto_min_support=2 hybrid_proto_assign_iters=2 hybrid_proto_beta=0.5 anchor_select_mode=mlp anchor_topk=1 anchor_softmax_temp=1.0 anchor_use_reliability=0 anchor_rel_gap_temp=0.1 use_multi_view=0 mv_w(ent=0.65,know=0.2,type=0.15,ctx=0.0)
+Terminated
+===== END M=0.0 W=0.1 =====
+===== START M=0.0 W=0.2 TEST_OUT=/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_anchor_align_bs1_m0.0_w0.2_2026-03-07_09-14-21.jsonl =====
+[INFO] Wrote config.py
+[INFO] DATASET=gmner
+[INFO] TRAIN_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_train.jsonl
+[INFO] DEV_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_dev.jsonl
+[INFO] TEST_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_test.jsonl
+[INFO] IMG_DIR=/workspace/IJCAI2019_data/all_images
+[INFO] NPZ_DIR=/workspace/root/data2/twitter_images/all
+[INFO] MODEL_NAME=FacebookAI/xlm-roberta-large
+[INFO] USE_XML_CLIP_REGIONS=0
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train.py
+[HP] batch=1 epochs=6 lr=5e-06 temp=0.8 | seed=45 save_best=0 | use_xml_clip_regions=0 region_dim=2048 clip_model=openai/clip-vit-base-patch32 | w(ce=0.0,cons=0.0,excl=0.0,margin=1.0) | w(rt_pull=0.0,rt_push=0.0,anchor_align=0.2,proto_cons=0.0,mod_proto=0.0,tripod=0.0,multi_proto_cons=0.0,hybrid_proto_cons=0.0) | cons_alpha=0.65 cons_sim_thr=0.5 cons_target_pool=mean cons_hard_topk=0 cons_include_intra=0 excl_margin=0.3 excl_same_type_w=1.0 excl_diff_type_w=1.0 excl_topk=0 rank_margin=0.5 rank_topk=5 rt_neg_margin=0.2 rt_push_sim_weighted=0 rt_push_topk=0 rt_push_weight_power=1.0 rt_push_detach_weights=1 rt_groundability_weighted=0 rt_groundability_power=1.0 rt_groundability_min=0.0 rt_groundability_detach=1 anchor_align_margin=0.0 anchor_align_target_pool=max anchor_align_detach_target=1 anchor_align_include_anchor_entity=0 proto_cons_alpha=0.7 proto_min_support=2 mod_proto_alpha=0.7 mod_proto_min_support=2 tripod_margin=0.2 tripod_neg_topk=3 tripod_score_weighted_neg=1 multi_proto_alpha=0.7 multi_proto_k=3 multi_proto_min_support=2 multi_proto_assign_iters=2 hybrid_proto_alpha=0.7 hybrid_proto_k=3 hybrid_proto_min_support=2 hybrid_proto_assign_iters=2 hybrid_proto_beta=0.5 anchor_select_mode=mlp anchor_topk=1 anchor_softmax_temp=1.0 anchor_use_reliability=0 anchor_rel_gap_temp=0.1 use_multi_view=0 mv_w(ent=0.65,know=0.2,type=0.15,ctx=0.0)
+Terminated
+===== END M=0.0 W=0.2 =====
+===== START M=0.0 W=0.3 TEST_OUT=/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_anchor_align_bs1_m0.0_w0.3_2026-03-07_09-15-25.jsonl =====
+[INFO] Wrote config.py
+[INFO] DATASET=gmner
+[INFO] TRAIN_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_train.jsonl
+[INFO] DEV_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_dev.jsonl
+[INFO] TEST_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_test.jsonl
+[INFO] IMG_DIR=/workspace/IJCAI2019_data/all_images
+[INFO] NPZ_DIR=/workspace/root/data2/twitter_images/all
+[INFO] MODEL_NAME=FacebookAI/xlm-roberta-large
+[INFO] USE_XML_CLIP_REGIONS=0
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train.py
+[HP] batch=1 epochs=6 lr=5e-06 temp=0.8 | seed=45 save_best=0 | use_xml_clip_regions=0 region_dim=2048 clip_model=openai/clip-vit-base-patch32 | w(ce=0.0,cons=0.0,excl=0.0,margin=1.0) | w(rt_pull=0.0,rt_push=0.0,anchor_align=0.3,proto_cons=0.0,mod_proto=0.0,tripod=0.0,multi_proto_cons=0.0,hybrid_proto_cons=0.0) | cons_alpha=0.65 cons_sim_thr=0.5 cons_target_pool=mean cons_hard_topk=0 cons_include_intra=0 excl_margin=0.3 excl_same_type_w=1.0 excl_diff_type_w=1.0 excl_topk=0 rank_margin=0.5 rank_topk=5 rt_neg_margin=0.2 rt_push_sim_weighted=0 rt_push_topk=0 rt_push_weight_power=1.0 rt_push_detach_weights=1 rt_groundability_weighted=0 rt_groundability_power=1.0 rt_groundability_min=0.0 rt_groundability_detach=1 anchor_align_margin=0.0 anchor_align_target_pool=max anchor_align_detach_target=1 anchor_align_include_anchor_entity=0 proto_cons_alpha=0.7 proto_min_support=2 mod_proto_alpha=0.7 mod_proto_min_support=2 tripod_margin=0.2 tripod_neg_topk=3 tripod_score_weighted_neg=1 multi_proto_alpha=0.7 multi_proto_k=3 multi_proto_min_support=2 multi_proto_assign_iters=2 hybrid_proto_alpha=0.7 hybrid_proto_k=3 hybrid_proto_min_support=2 hybrid_proto_assign_iters=2 hybrid_proto_beta=0.5 anchor_select_mode=mlp anchor_topk=1 anchor_softmax_temp=1.0 anchor_use_reliability=0 anchor_rel_gap_temp=0.1 use_multi_view=0 mv_w(ent=0.65,know=0.2,type=0.15,ctx=0.0)

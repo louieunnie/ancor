@@ -1,0 +1,3 @@
+===== START v3_best_xlmr_vinvl_base TEST_OUT=/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_v3_best_xlmr_vinvl_base_2026-03-10_01-47-06.jsonl =====
+environment: line 1: LOSS_CONS_W=0.1: command not found
+===== END v3_best_xlmr_vinvl_base =====

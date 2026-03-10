@@ -1,0 +1,306 @@
+[QUEUE] waiting for current runs to finish...
+[QUEUE] start phase2 sweep
+===== START phase2_ew0.30_rm0.30 TEST_OUT=/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.30_rm0.30_2026-03-08_01-29-26.jsonl =====
+[INFO] Wrote config.py
+[INFO] DATASET=gmner
+[INFO] TRAIN_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_train.jsonl
+[INFO] DEV_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_dev.jsonl
+[INFO] TEST_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_test.jsonl
+[INFO] IMG_DIR=/workspace/IJCAI2019_data/all_images
+[INFO] NPZ_DIR=/workspace/root/data2/twitter_images/all
+[INFO] MODEL_NAME=FacebookAI/xlm-roberta-large
+[INFO] USE_XML_CLIP_REGIONS=0
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train.py
+[HP] batch=4 epochs=6 lr=5e-06 temp=0.8 | seed=13 save_best=0 | use_xml_clip_regions=0 region_dim=2048 clip_model=openai/clip-vit-base-patch32 | w(ce=0.0,cons=0.1,excl=0.3,margin=1.0) | w(ung_push=0.0) | w(rt_pull=0.0,rt_push=0.0,rt_mid_pull=0.0,anchor_align=0.0,proto_cons=0.0,mod_proto=0.0,tripod=0.0,multi_proto_cons=0.0,hybrid_proto_cons=0.0) | cons_alpha=0.3 cons_sim_thr=-1.0 cons_target_pool=mean cons_hard_topk=0 cons_include_intra=0 cons_weighted_sim=0 cons_sim_tau=0.1 cons_sim_min=-1.0 cons_sim_weight_cap=5.0 excl_margin=0.3 excl_same_type_w=1.0 excl_diff_type_w=1.0 excl_topk=0 excl_mode=sim_prob rank_margin=0.3 rank_topk=5 ung_push_margin=0.0 rt_neg_margin=0.2 rt_push_sim_weighted=0 rt_push_topk=0 rt_push_weight_power=1.0 rt_push_detach_weights=1 rt_groundability_weighted=0 rt_groundability_power=1.0 rt_groundability_min=0.0 rt_groundability_detach=1 rt_mid_alpha=0.5 anchor_align_margin=0.0 anchor_align_target_pool=max anchor_align_detach_target=1 anchor_align_include_anchor_entity=0 proto_cons_alpha=0.7 proto_min_support=2 mod_proto_alpha=0.7 mod_proto_min_support=2 tripod_margin=0.2 tripod_neg_topk=3 tripod_score_weighted_neg=1 multi_proto_alpha=0.7 multi_proto_k=3 multi_proto_min_support=2 multi_proto_assign_iters=2 hybrid_proto_alpha=0.7 hybrid_proto_k=3 hybrid_proto_min_support=2 hybrid_proto_assign_iters=2 hybrid_proto_beta=0.5 anchor_select_mode=mlp anchor_topk=1 anchor_softmax_temp=1.0 anchor_use_reliability=1 anchor_rel_gap_temp=0.1 use_multi_view=0 mv_w(ent=0.65,know=0.2,type=0.15,ctx=0.0)
+[Epoch 0] Loss=0.1728 (ce=1.0694, cons=0.3610, excl=0.0016, margin=0.1362, ung_push=0.4542, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.522 F1=0.686
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 1] Loss=0.1221 (ce=0.8764, cons=0.2282, excl=0.0010, margin=0.0990, ung_push=0.2893, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.607 F1=0.756
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 2] Loss=0.1024 (ce=0.8046, cons=0.1800, excl=0.0008, margin=0.0842, ung_push=0.2195, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.569 F1=0.725
+[Epoch 3] Loss=0.0870 (ce=0.7476, cons=0.1437, excl=0.0007, margin=0.0724, ung_push=0.1954, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.589 F1=0.742
+[Epoch 4] Loss=0.0781 (ce=0.7058, cons=0.1394, excl=0.0007, margin=0.0639, ung_push=0.1843, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.579 F1=0.734
+[Epoch 5] Loss=0.0688 (ce=0.6383, cons=0.1252, excl=0.0007, margin=0.0560, ung_push=0.1678, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.456 F1=0.626
+[TEST] P=1.000 R=0.469 F1=0.639
+[INFO] Inference results saved to /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.30_rm0.30_2026-03-08_01-29-26.jsonl
+[TEST] Inference jsonl saved: /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.30_rm0.30_2026-03-08_01-29-26.jsonl
+===== END phase2_ew0.30_rm0.30 =====
+===== START phase2_ew0.30_rm0.50 TEST_OUT=/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.30_rm0.50_2026-03-08_01-48-57.jsonl =====
+[INFO] Wrote config.py
+[INFO] DATASET=gmner
+[INFO] TRAIN_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_train.jsonl
+[INFO] DEV_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_dev.jsonl
+[INFO] TEST_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_test.jsonl
+[INFO] IMG_DIR=/workspace/IJCAI2019_data/all_images
+[INFO] NPZ_DIR=/workspace/root/data2/twitter_images/all
+[INFO] MODEL_NAME=FacebookAI/xlm-roberta-large
+[INFO] USE_XML_CLIP_REGIONS=0
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train.py
+[HP] batch=4 epochs=6 lr=5e-06 temp=0.8 | seed=13 save_best=0 | use_xml_clip_regions=0 region_dim=2048 clip_model=openai/clip-vit-base-patch32 | w(ce=0.0,cons=0.1,excl=0.3,margin=1.0) | w(ung_push=0.0) | w(rt_pull=0.0,rt_push=0.0,rt_mid_pull=0.0,anchor_align=0.0,proto_cons=0.0,mod_proto=0.0,tripod=0.0,multi_proto_cons=0.0,hybrid_proto_cons=0.0) | cons_alpha=0.3 cons_sim_thr=-1.0 cons_target_pool=mean cons_hard_topk=0 cons_include_intra=0 cons_weighted_sim=0 cons_sim_tau=0.1 cons_sim_min=-1.0 cons_sim_weight_cap=5.0 excl_margin=0.3 excl_same_type_w=1.0 excl_diff_type_w=1.0 excl_topk=0 excl_mode=sim_prob rank_margin=0.5 rank_topk=5 ung_push_margin=0.0 rt_neg_margin=0.2 rt_push_sim_weighted=0 rt_push_topk=0 rt_push_weight_power=1.0 rt_push_detach_weights=1 rt_groundability_weighted=0 rt_groundability_power=1.0 rt_groundability_min=0.0 rt_groundability_detach=1 rt_mid_alpha=0.5 anchor_align_margin=0.0 anchor_align_target_pool=max anchor_align_detach_target=1 anchor_align_include_anchor_entity=0 proto_cons_alpha=0.7 proto_min_support=2 mod_proto_alpha=0.7 mod_proto_min_support=2 tripod_margin=0.2 tripod_neg_topk=3 tripod_score_weighted_neg=1 multi_proto_alpha=0.7 multi_proto_k=3 multi_proto_min_support=2 multi_proto_assign_iters=2 hybrid_proto_alpha=0.7 hybrid_proto_k=3 hybrid_proto_min_support=2 hybrid_proto_assign_iters=2 hybrid_proto_beta=0.5 anchor_select_mode=mlp anchor_topk=1 anchor_softmax_temp=1.0 anchor_use_reliability=1 anchor_rel_gap_temp=0.1 use_multi_view=0 mv_w(ent=0.65,know=0.2,type=0.15,ctx=0.0)
+[Epoch 0] Loss=0.2765 (ce=0.9131, cons=0.3823, excl=0.0014, margin=0.2379, ung_push=0.4177, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.663 F1=0.797
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 1] Loss=0.1993 (ce=0.6982, cons=0.2797, excl=0.0010, margin=0.1710, ung_push=0.3522, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.663 F1=0.797
+[Epoch 2] Loss=0.1709 (ce=0.6317, cons=0.2257, excl=0.0009, margin=0.1480, ung_push=0.3262, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.678 F1=0.808
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 3] Loss=0.1495 (ce=0.5644, cons=0.1869, excl=0.0008, margin=0.1306, ung_push=0.2639, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.663 F1=0.797
+[Epoch 4] Loss=0.1340 (ce=0.5032, cons=0.1650, excl=0.0008, margin=0.1172, ung_push=0.2082, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.682 F1=0.811
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 5] Loss=0.1213 (ce=0.4399, cons=0.1480, excl=0.0007, margin=0.1062, ung_push=0.1839, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.681 F1=0.810
+[TEST] P=1.000 R=0.687 F1=0.815
+[INFO] Inference results saved to /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.30_rm0.50_2026-03-08_01-48-57.jsonl
+[TEST] Inference jsonl saved: /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.30_rm0.50_2026-03-08_01-48-57.jsonl
+===== END phase2_ew0.30_rm0.50 =====
+===== START phase2_ew0.30_rm0.70 TEST_OUT=/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.30_rm0.70_2026-03-08_02-08-20.jsonl =====
+[INFO] Wrote config.py
+[INFO] DATASET=gmner
+[INFO] TRAIN_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_train.jsonl
+[INFO] DEV_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_dev.jsonl
+[INFO] TEST_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_test.jsonl
+[INFO] IMG_DIR=/workspace/IJCAI2019_data/all_images
+[INFO] NPZ_DIR=/workspace/root/data2/twitter_images/all
+[INFO] MODEL_NAME=FacebookAI/xlm-roberta-large
+[INFO] USE_XML_CLIP_REGIONS=0
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train.py
+[HP] batch=4 epochs=6 lr=5e-06 temp=0.8 | seed=13 save_best=0 | use_xml_clip_regions=0 region_dim=2048 clip_model=openai/clip-vit-base-patch32 | w(ce=0.0,cons=0.1,excl=0.3,margin=1.0) | w(ung_push=0.0) | w(rt_pull=0.0,rt_push=0.0,rt_mid_pull=0.0,anchor_align=0.0,proto_cons=0.0,mod_proto=0.0,tripod=0.0,multi_proto_cons=0.0,hybrid_proto_cons=0.0) | cons_alpha=0.3 cons_sim_thr=-1.0 cons_target_pool=mean cons_hard_topk=0 cons_include_intra=0 cons_weighted_sim=0 cons_sim_tau=0.1 cons_sim_min=-1.0 cons_sim_weight_cap=5.0 excl_margin=0.3 excl_same_type_w=1.0 excl_diff_type_w=1.0 excl_topk=0 excl_mode=sim_prob rank_margin=0.7 rank_topk=5 ung_push_margin=0.0 rt_neg_margin=0.2 rt_push_sim_weighted=0 rt_push_topk=0 rt_push_weight_power=1.0 rt_push_detach_weights=1 rt_groundability_weighted=0 rt_groundability_power=1.0 rt_groundability_min=0.0 rt_groundability_detach=1 rt_mid_alpha=0.5 anchor_align_margin=0.0 anchor_align_target_pool=max anchor_align_detach_target=1 anchor_align_include_anchor_entity=0 proto_cons_alpha=0.7 proto_min_support=2 mod_proto_alpha=0.7 mod_proto_min_support=2 tripod_margin=0.2 tripod_neg_topk=3 tripod_score_weighted_neg=1 multi_proto_alpha=0.7 multi_proto_k=3 multi_proto_min_support=2 multi_proto_assign_iters=2 hybrid_proto_alpha=0.7 hybrid_proto_k=3 hybrid_proto_min_support=2 hybrid_proto_assign_iters=2 hybrid_proto_beta=0.5 anchor_select_mode=mlp anchor_topk=1 anchor_softmax_temp=1.0 anchor_use_reliability=1 anchor_rel_gap_temp=0.1 use_multi_view=0 mv_w(ent=0.65,know=0.2,type=0.15,ctx=0.0)
+[Epoch 0] Loss=0.3697 (ce=0.7636, cons=0.3972, excl=0.0014, margin=0.3296, ung_push=0.3938, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.638 F1=0.779
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 1] Loss=0.2859 (ce=0.5458, cons=0.2920, excl=0.0010, margin=0.2564, ung_push=0.2605, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.674 F1=0.805
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 2] Loss=0.2418 (ce=0.4344, cons=0.2291, excl=0.0009, margin=0.2186, ung_push=0.3291, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.681 F1=0.810
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 3] Loss=0.2086 (ce=0.4015, cons=0.1894, excl=0.0010, margin=0.1893, ung_push=0.3935, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.697 F1=0.822
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 4] Loss=0.1945 (ce=0.3894, cons=0.1766, excl=0.0009, margin=0.1765, ung_push=0.4511, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.682 F1=0.811
+[Epoch 5] Loss=0.1709 (ce=0.3146, cons=0.1580, excl=0.0009, margin=0.1548, ung_push=0.4487, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.701 F1=0.824
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[TEST] P=1.000 R=0.723 F1=0.839
+[INFO] Inference results saved to /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.30_rm0.70_2026-03-08_02-08-20.jsonl
+[TEST] Inference jsonl saved: /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.30_rm0.70_2026-03-08_02-08-20.jsonl
+===== END phase2_ew0.30_rm0.70 =====
+===== START phase2_ew0.50_rm0.30 TEST_OUT=/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.50_rm0.30_2026-03-08_02-27-34.jsonl =====
+[INFO] Wrote config.py
+[INFO] DATASET=gmner
+[INFO] TRAIN_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_train.jsonl
+[INFO] DEV_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_dev.jsonl
+[INFO] TEST_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_test.jsonl
+[INFO] IMG_DIR=/workspace/IJCAI2019_data/all_images
+[INFO] NPZ_DIR=/workspace/root/data2/twitter_images/all
+[INFO] MODEL_NAME=FacebookAI/xlm-roberta-large
+[INFO] USE_XML_CLIP_REGIONS=0
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train.py
+[HP] batch=4 epochs=6 lr=5e-06 temp=0.8 | seed=13 save_best=0 | use_xml_clip_regions=0 region_dim=2048 clip_model=openai/clip-vit-base-patch32 | w(ce=0.0,cons=0.1,excl=0.5,margin=1.0) | w(ung_push=0.0) | w(rt_pull=0.0,rt_push=0.0,rt_mid_pull=0.0,anchor_align=0.0,proto_cons=0.0,mod_proto=0.0,tripod=0.0,multi_proto_cons=0.0,hybrid_proto_cons=0.0) | cons_alpha=0.3 cons_sim_thr=-1.0 cons_target_pool=mean cons_hard_topk=0 cons_include_intra=0 cons_weighted_sim=0 cons_sim_tau=0.1 cons_sim_min=-1.0 cons_sim_weight_cap=5.0 excl_margin=0.3 excl_same_type_w=1.0 excl_diff_type_w=1.0 excl_topk=0 excl_mode=sim_prob rank_margin=0.3 rank_topk=5 ung_push_margin=0.0 rt_neg_margin=0.2 rt_push_sim_weighted=0 rt_push_topk=0 rt_push_weight_power=1.0 rt_push_detach_weights=1 rt_groundability_weighted=0 rt_groundability_power=1.0 rt_groundability_min=0.0 rt_groundability_detach=1 rt_mid_alpha=0.5 anchor_align_margin=0.0 anchor_align_target_pool=max anchor_align_detach_target=1 anchor_align_include_anchor_entity=0 proto_cons_alpha=0.7 proto_min_support=2 mod_proto_alpha=0.7 mod_proto_min_support=2 tripod_margin=0.2 tripod_neg_topk=3 tripod_score_weighted_neg=1 multi_proto_alpha=0.7 multi_proto_k=3 multi_proto_min_support=2 multi_proto_assign_iters=2 hybrid_proto_alpha=0.7 hybrid_proto_k=3 hybrid_proto_min_support=2 hybrid_proto_assign_iters=2 hybrid_proto_beta=0.5 anchor_select_mode=mlp anchor_topk=1 anchor_softmax_temp=1.0 anchor_use_reliability=1 anchor_rel_gap_temp=0.1 use_multi_view=0 mv_w(ent=0.65,know=0.2,type=0.15,ctx=0.0)
+[Epoch 0] Loss=0.1733 (ce=1.0611, cons=0.3634, excl=0.0015, margin=0.1363, ung_push=0.4277, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.427 F1=0.598
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 1] Loss=0.1228 (ce=0.8470, cons=0.2292, excl=0.0008, margin=0.0995, ung_push=0.2322, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.558 F1=0.716
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 2] Loss=0.1033 (ce=0.7955, cons=0.1804, excl=0.0007, margin=0.0848, ung_push=0.1870, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.637 F1=0.778
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 3] Loss=0.0890 (ce=0.7477, cons=0.1445, excl=0.0007, margin=0.0742, ung_push=0.1599, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.583 F1=0.737
+[Epoch 4] Loss=0.0773 (ce=0.7029, cons=0.1348, excl=0.0006, margin=0.0635, ung_push=0.1421, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.607 F1=0.756
+[Epoch 5] Loss=0.0675 (ce=0.6325, cons=0.1213, excl=0.0006, margin=0.0551, ung_push=0.1422, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.570 F1=0.726
+[TEST] P=1.000 R=0.581 F1=0.735
+[INFO] Inference results saved to /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.50_rm0.30_2026-03-08_02-27-34.jsonl
+[TEST] Inference jsonl saved: /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.50_rm0.30_2026-03-08_02-27-34.jsonl
+===== END phase2_ew0.50_rm0.30 =====
+===== START phase2_ew0.50_rm0.50 TEST_OUT=/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.50_rm0.50_2026-03-08_02-46-47.jsonl =====
+[INFO] Wrote config.py
+[INFO] DATASET=gmner
+[INFO] TRAIN_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_train.jsonl
+[INFO] DEV_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_dev.jsonl
+[INFO] TEST_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_test.jsonl
+[INFO] IMG_DIR=/workspace/IJCAI2019_data/all_images
+[INFO] NPZ_DIR=/workspace/root/data2/twitter_images/all
+[INFO] MODEL_NAME=FacebookAI/xlm-roberta-large
+[INFO] USE_XML_CLIP_REGIONS=0
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train.py
+[HP] batch=4 epochs=6 lr=5e-06 temp=0.8 | seed=13 save_best=0 | use_xml_clip_regions=0 region_dim=2048 clip_model=openai/clip-vit-base-patch32 | w(ce=0.0,cons=0.1,excl=0.5,margin=1.0) | w(ung_push=0.0) | w(rt_pull=0.0,rt_push=0.0,rt_mid_pull=0.0,anchor_align=0.0,proto_cons=0.0,mod_proto=0.0,tripod=0.0,multi_proto_cons=0.0,hybrid_proto_cons=0.0) | cons_alpha=0.3 cons_sim_thr=-1.0 cons_target_pool=mean cons_hard_topk=0 cons_include_intra=0 cons_weighted_sim=0 cons_sim_tau=0.1 cons_sim_min=-1.0 cons_sim_weight_cap=5.0 excl_margin=0.3 excl_same_type_w=1.0 excl_diff_type_w=1.0 excl_topk=0 excl_mode=sim_prob rank_margin=0.5 rank_topk=5 ung_push_margin=0.0 rt_neg_margin=0.2 rt_push_sim_weighted=0 rt_push_topk=0 rt_push_weight_power=1.0 rt_push_detach_weights=1 rt_groundability_weighted=0 rt_groundability_power=1.0 rt_groundability_min=0.0 rt_groundability_detach=1 rt_mid_alpha=0.5 anchor_align_margin=0.0 anchor_align_target_pool=max anchor_align_detach_target=1 anchor_align_include_anchor_entity=0 proto_cons_alpha=0.7 proto_min_support=2 mod_proto_alpha=0.7 mod_proto_min_support=2 tripod_margin=0.2 tripod_neg_topk=3 tripod_score_weighted_neg=1 multi_proto_alpha=0.7 multi_proto_k=3 multi_proto_min_support=2 multi_proto_assign_iters=2 hybrid_proto_alpha=0.7 hybrid_proto_k=3 hybrid_proto_min_support=2 hybrid_proto_assign_iters=2 hybrid_proto_beta=0.5 anchor_select_mode=mlp anchor_topk=1 anchor_softmax_temp=1.0 anchor_use_reliability=1 anchor_rel_gap_temp=0.1 use_multi_view=0 mv_w(ent=0.65,know=0.2,type=0.15,ctx=0.0)
+[Epoch 0] Loss=0.2714 (ce=0.8911, cons=0.3936, excl=0.0016, margin=0.2312, ung_push=0.4404, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.517 F1=0.681
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 1] Loss=0.2076 (ce=0.6844, cons=0.2790, excl=0.0011, margin=0.1792, ung_push=0.3214, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.676 F1=0.807
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 2] Loss=0.1742 (ce=0.5865, cons=0.2207, excl=0.0011, margin=0.1516, ung_push=0.3638, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.681 F1=0.810
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 3] Loss=0.1520 (ce=0.5317, cons=0.1863, excl=0.0010, margin=0.1329, ung_push=0.3680, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.700 F1=0.824
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 4] Loss=0.1320 (ce=0.4572, cons=0.1759, excl=0.0009, margin=0.1140, ung_push=0.3049, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.694 F1=0.820
+[Epoch 5] Loss=0.1155 (ce=0.4004, cons=0.1544, excl=0.0008, margin=0.0997, ung_push=0.2833, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.678 F1=0.808
+[TEST] P=1.000 R=0.705 F1=0.827
+[INFO] Inference results saved to /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.50_rm0.50_2026-03-08_02-46-47.jsonl
+[TEST] Inference jsonl saved: /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.50_rm0.50_2026-03-08_02-46-47.jsonl
+===== END phase2_ew0.50_rm0.50 =====
+===== START phase2_ew0.50_rm0.70 TEST_OUT=/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.50_rm0.70_2026-03-08_03-06-03.jsonl =====
+[INFO] Wrote config.py
+[INFO] DATASET=gmner
+[INFO] TRAIN_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_train.jsonl
+[INFO] DEV_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_dev.jsonl
+[INFO] TEST_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_test.jsonl
+[INFO] IMG_DIR=/workspace/IJCAI2019_data/all_images
+[INFO] NPZ_DIR=/workspace/root/data2/twitter_images/all
+[INFO] MODEL_NAME=FacebookAI/xlm-roberta-large
+[INFO] USE_XML_CLIP_REGIONS=0
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train.py
+[HP] batch=4 epochs=6 lr=5e-06 temp=0.8 | seed=13 save_best=0 | use_xml_clip_regions=0 region_dim=2048 clip_model=openai/clip-vit-base-patch32 | w(ce=0.0,cons=0.1,excl=0.5,margin=1.0) | w(ung_push=0.0) | w(rt_pull=0.0,rt_push=0.0,rt_mid_pull=0.0,anchor_align=0.0,proto_cons=0.0,mod_proto=0.0,tripod=0.0,multi_proto_cons=0.0,hybrid_proto_cons=0.0) | cons_alpha=0.3 cons_sim_thr=-1.0 cons_target_pool=mean cons_hard_topk=0 cons_include_intra=0 cons_weighted_sim=0 cons_sim_tau=0.1 cons_sim_min=-1.0 cons_sim_weight_cap=5.0 excl_margin=0.3 excl_same_type_w=1.0 excl_diff_type_w=1.0 excl_topk=0 excl_mode=sim_prob rank_margin=0.7 rank_topk=5 ung_push_margin=0.0 rt_neg_margin=0.2 rt_push_sim_weighted=0 rt_push_topk=0 rt_push_weight_power=1.0 rt_push_detach_weights=1 rt_groundability_weighted=0 rt_groundability_power=1.0 rt_groundability_min=0.0 rt_groundability_detach=1 rt_mid_alpha=0.5 anchor_align_margin=0.0 anchor_align_target_pool=max anchor_align_detach_target=1 anchor_align_include_anchor_entity=0 proto_cons_alpha=0.7 proto_min_support=2 mod_proto_alpha=0.7 mod_proto_min_support=2 tripod_margin=0.2 tripod_neg_topk=3 tripod_score_weighted_neg=1 multi_proto_alpha=0.7 multi_proto_k=3 multi_proto_min_support=2 multi_proto_assign_iters=2 hybrid_proto_alpha=0.7 hybrid_proto_k=3 hybrid_proto_min_support=2 hybrid_proto_assign_iters=2 hybrid_proto_beta=0.5 anchor_select_mode=mlp anchor_topk=1 anchor_softmax_temp=1.0 anchor_use_reliability=1 anchor_rel_gap_temp=0.1 use_multi_view=0 mv_w(ent=0.65,know=0.2,type=0.15,ctx=0.0)
+[Epoch 0] Loss=0.3650 (ce=0.7580, cons=0.3970, excl=0.0014, margin=0.3246, ung_push=0.4019, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.617 F1=0.763
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 1] Loss=0.2649 (ce=0.4975, cons=0.2936, excl=0.0011, margin=0.2350, ung_push=0.3361, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.492 F1=0.660
+[Epoch 2] Loss=0.2224 (ce=0.4373, cons=0.2276, excl=0.0010, margin=0.1991, ung_push=0.3463, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.582 F1=0.736
+[Epoch 3] Loss=0.1906 (ce=0.3794, cons=0.1889, excl=0.0009, margin=0.1713, ung_push=0.3272, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.633 F1=0.775
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 4] Loss=0.1679 (ce=0.3317, cons=0.1712, excl=0.0009, margin=0.1503, ung_push=0.3136, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.586 F1=0.739
+[Epoch 5] Loss=0.1443 (ce=0.2895, cons=0.1471, excl=0.0008, margin=0.1292, ung_push=0.2865, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.565 F1=0.722
+[TEST] P=1.000 R=0.561 F1=0.719
+[INFO] Inference results saved to /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.50_rm0.70_2026-03-08_03-06-03.jsonl
+[TEST] Inference jsonl saved: /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.50_rm0.70_2026-03-08_03-06-03.jsonl
+===== END phase2_ew0.50_rm0.70 =====
+===== START phase2_ew0.70_rm0.30 TEST_OUT=/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.70_rm0.30_2026-03-08_03-25-17.jsonl =====
+[INFO] Wrote config.py
+[INFO] DATASET=gmner
+[INFO] TRAIN_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_train.jsonl
+[INFO] DEV_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_dev.jsonl
+[INFO] TEST_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_test.jsonl
+[INFO] IMG_DIR=/workspace/IJCAI2019_data/all_images
+[INFO] NPZ_DIR=/workspace/root/data2/twitter_images/all
+[INFO] MODEL_NAME=FacebookAI/xlm-roberta-large
+[INFO] USE_XML_CLIP_REGIONS=0
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train.py
+[HP] batch=4 epochs=6 lr=5e-06 temp=0.8 | seed=13 save_best=0 | use_xml_clip_regions=0 region_dim=2048 clip_model=openai/clip-vit-base-patch32 | w(ce=0.0,cons=0.1,excl=0.7,margin=1.0) | w(ung_push=0.0) | w(rt_pull=0.0,rt_push=0.0,rt_mid_pull=0.0,anchor_align=0.0,proto_cons=0.0,mod_proto=0.0,tripod=0.0,multi_proto_cons=0.0,hybrid_proto_cons=0.0) | cons_alpha=0.3 cons_sim_thr=-1.0 cons_target_pool=mean cons_hard_topk=0 cons_include_intra=0 cons_weighted_sim=0 cons_sim_tau=0.1 cons_sim_min=-1.0 cons_sim_weight_cap=5.0 excl_margin=0.3 excl_same_type_w=1.0 excl_diff_type_w=1.0 excl_topk=0 excl_mode=sim_prob rank_margin=0.3 rank_topk=5 ung_push_margin=0.0 rt_neg_margin=0.2 rt_push_sim_weighted=0 rt_push_topk=0 rt_push_weight_power=1.0 rt_push_detach_weights=1 rt_groundability_weighted=0 rt_groundability_power=1.0 rt_groundability_min=0.0 rt_groundability_detach=1 rt_mid_alpha=0.5 anchor_align_margin=0.0 anchor_align_target_pool=max anchor_align_detach_target=1 anchor_align_include_anchor_entity=0 proto_cons_alpha=0.7 proto_min_support=2 mod_proto_alpha=0.7 mod_proto_min_support=2 tripod_margin=0.2 tripod_neg_topk=3 tripod_score_weighted_neg=1 multi_proto_alpha=0.7 multi_proto_k=3 multi_proto_min_support=2 multi_proto_assign_iters=2 hybrid_proto_alpha=0.7 hybrid_proto_k=3 hybrid_proto_min_support=2 hybrid_proto_assign_iters=2 hybrid_proto_beta=0.5 anchor_select_mode=mlp anchor_topk=1 anchor_softmax_temp=1.0 anchor_use_reliability=1 anchor_rel_gap_temp=0.1 use_multi_view=0 mv_w(ent=0.65,know=0.2,type=0.15,ctx=0.0)
+[Epoch 0] Loss=0.1747 (ce=1.0630, cons=0.3692, excl=0.0015, margin=0.1368, ung_push=0.4137, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.516 F1=0.680
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 1] Loss=0.1229 (ce=0.8513, cons=0.2278, excl=0.0008, margin=0.0996, ung_push=0.2185, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.606 F1=0.755
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 2] Loss=0.1038 (ce=0.8190, cons=0.1849, excl=0.0007, margin=0.0848, ung_push=0.1932, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.657 F1=0.793
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 3] Loss=0.0890 (ce=0.7838, cons=0.1496, excl=0.0007, margin=0.0736, ung_push=0.1795, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.643 F1=0.783
+[Epoch 4] Loss=0.0772 (ce=0.7300, cons=0.1342, excl=0.0006, margin=0.0634, ung_push=0.1758, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.607 F1=0.756
+[Epoch 5] Loss=0.0686 (ce=0.6665, cons=0.1276, excl=0.0006, margin=0.0554, ung_push=0.1945, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.586 F1=0.739
+[TEST] P=1.000 R=0.571 F1=0.727
+[INFO] Inference results saved to /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.70_rm0.30_2026-03-08_03-25-17.jsonl
+[TEST] Inference jsonl saved: /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.70_rm0.30_2026-03-08_03-25-17.jsonl
+===== END phase2_ew0.70_rm0.30 =====
+===== START phase2_ew0.70_rm0.50 TEST_OUT=/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.70_rm0.50_2026-03-08_03-44-29.jsonl =====
+[INFO] Wrote config.py
+[INFO] DATASET=gmner
+[INFO] TRAIN_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_train.jsonl
+[INFO] DEV_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_dev.jsonl
+[INFO] TEST_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_test.jsonl
+[INFO] IMG_DIR=/workspace/IJCAI2019_data/all_images
+[INFO] NPZ_DIR=/workspace/root/data2/twitter_images/all
+[INFO] MODEL_NAME=FacebookAI/xlm-roberta-large
+[INFO] USE_XML_CLIP_REGIONS=0
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train.py
+[HP] batch=4 epochs=6 lr=5e-06 temp=0.8 | seed=13 save_best=0 | use_xml_clip_regions=0 region_dim=2048 clip_model=openai/clip-vit-base-patch32 | w(ce=0.0,cons=0.1,excl=0.7,margin=1.0) | w(ung_push=0.0) | w(rt_pull=0.0,rt_push=0.0,rt_mid_pull=0.0,anchor_align=0.0,proto_cons=0.0,mod_proto=0.0,tripod=0.0,multi_proto_cons=0.0,hybrid_proto_cons=0.0) | cons_alpha=0.3 cons_sim_thr=-1.0 cons_target_pool=mean cons_hard_topk=0 cons_include_intra=0 cons_weighted_sim=0 cons_sim_tau=0.1 cons_sim_min=-1.0 cons_sim_weight_cap=5.0 excl_margin=0.3 excl_same_type_w=1.0 excl_diff_type_w=1.0 excl_topk=0 excl_mode=sim_prob rank_margin=0.5 rank_topk=5 ung_push_margin=0.0 rt_neg_margin=0.2 rt_push_sim_weighted=0 rt_push_topk=0 rt_push_weight_power=1.0 rt_push_detach_weights=1 rt_groundability_weighted=0 rt_groundability_power=1.0 rt_groundability_min=0.0 rt_groundability_detach=1 rt_mid_alpha=0.5 anchor_align_margin=0.0 anchor_align_target_pool=max anchor_align_detach_target=1 anchor_align_include_anchor_entity=0 proto_cons_alpha=0.7 proto_min_support=2 mod_proto_alpha=0.7 mod_proto_min_support=2 tripod_margin=0.2 tripod_neg_topk=3 tripod_score_weighted_neg=1 multi_proto_alpha=0.7 multi_proto_k=3 multi_proto_min_support=2 multi_proto_assign_iters=2 hybrid_proto_alpha=0.7 hybrid_proto_k=3 hybrid_proto_min_support=2 hybrid_proto_assign_iters=2 hybrid_proto_beta=0.5 anchor_select_mode=mlp anchor_topk=1 anchor_softmax_temp=1.0 anchor_use_reliability=1 anchor_rel_gap_temp=0.1 use_multi_view=0 mv_w(ent=0.65,know=0.2,type=0.15,ctx=0.0)
+[Epoch 0] Loss=0.2675 (ce=0.8694, cons=0.3841, excl=0.0014, margin=0.2281, ung_push=0.4044, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.560 F1=0.718
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 1] Loss=0.1918 (ce=0.6200, cons=0.2502, excl=0.0009, margin=0.1662, ung_push=0.2742, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.641 F1=0.781
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 2] Loss=0.1605 (ce=0.5555, cons=0.1957, excl=0.0008, margin=0.1404, ung_push=0.2079, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.625 F1=0.769
+[Epoch 3] Loss=0.1386 (ce=0.5012, cons=0.1608, excl=0.0008, margin=0.1220, ung_push=0.1793, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.623 F1=0.767
+[Epoch 4] Loss=0.1214 (ce=0.4446, cons=0.1494, excl=0.0007, margin=0.1059, ung_push=0.1748, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.623 F1=0.767
+[Epoch 5] Loss=0.1081 (ce=0.3938, cons=0.1359, excl=0.0007, margin=0.0940, ung_push=0.1868, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.484 F1=0.653
+[TEST] P=1.000 R=0.489 F1=0.657
+[INFO] Inference results saved to /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.70_rm0.50_2026-03-08_03-44-29.jsonl
+[TEST] Inference jsonl saved: /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.70_rm0.50_2026-03-08_03-44-29.jsonl
+===== END phase2_ew0.70_rm0.50 =====
+===== START phase2_ew0.70_rm0.70 TEST_OUT=/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.70_rm0.70_2026-03-08_04-03-41.jsonl =====
+[INFO] Wrote config.py
+[INFO] DATASET=gmner
+[INFO] TRAIN_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_train.jsonl
+[INFO] DEV_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_dev.jsonl
+[INFO] TEST_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_test.jsonl
+[INFO] IMG_DIR=/workspace/IJCAI2019_data/all_images
+[INFO] NPZ_DIR=/workspace/root/data2/twitter_images/all
+[INFO] MODEL_NAME=FacebookAI/xlm-roberta-large
+[INFO] USE_XML_CLIP_REGIONS=0
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train.py
+[HP] batch=4 epochs=6 lr=5e-06 temp=0.8 | seed=13 save_best=0 | use_xml_clip_regions=0 region_dim=2048 clip_model=openai/clip-vit-base-patch32 | w(ce=0.0,cons=0.1,excl=0.7,margin=1.0) | w(ung_push=0.0) | w(rt_pull=0.0,rt_push=0.0,rt_mid_pull=0.0,anchor_align=0.0,proto_cons=0.0,mod_proto=0.0,tripod=0.0,multi_proto_cons=0.0,hybrid_proto_cons=0.0) | cons_alpha=0.3 cons_sim_thr=-1.0 cons_target_pool=mean cons_hard_topk=0 cons_include_intra=0 cons_weighted_sim=0 cons_sim_tau=0.1 cons_sim_min=-1.0 cons_sim_weight_cap=5.0 excl_margin=0.3 excl_same_type_w=1.0 excl_diff_type_w=1.0 excl_topk=0 excl_mode=sim_prob rank_margin=0.7 rank_topk=5 ung_push_margin=0.0 rt_neg_margin=0.2 rt_push_sim_weighted=0 rt_push_topk=0 rt_push_weight_power=1.0 rt_push_detach_weights=1 rt_groundability_weighted=0 rt_groundability_power=1.0 rt_groundability_min=0.0 rt_groundability_detach=1 rt_mid_alpha=0.5 anchor_align_margin=0.0 anchor_align_target_pool=max anchor_align_detach_target=1 anchor_align_include_anchor_entity=0 proto_cons_alpha=0.7 proto_min_support=2 mod_proto_alpha=0.7 mod_proto_min_support=2 tripod_margin=0.2 tripod_neg_topk=3 tripod_score_weighted_neg=1 multi_proto_alpha=0.7 multi_proto_k=3 multi_proto_min_support=2 multi_proto_assign_iters=2 hybrid_proto_alpha=0.7 hybrid_proto_k=3 hybrid_proto_min_support=2 hybrid_proto_assign_iters=2 hybrid_proto_beta=0.5 anchor_select_mode=mlp anchor_topk=1 anchor_softmax_temp=1.0 anchor_use_reliability=1 anchor_rel_gap_temp=0.1 use_multi_view=0 mv_w(ent=0.65,know=0.2,type=0.15,ctx=0.0)
+[Epoch 0] Loss=0.3657 (ce=0.7387, cons=0.3938, excl=0.0013, margin=0.3254, ung_push=0.3857, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.566 F1=0.723
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 1] Loss=0.2600 (ce=0.4935, cons=0.2557, excl=0.0010, margin=0.2338, ung_push=0.3250, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.599 F1=0.750
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 2] Loss=0.2235 (ce=0.4449, cons=0.2046, excl=0.0009, margin=0.2024, ung_push=0.2646, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.628 F1=0.771
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 3] Loss=0.2042 (ce=0.3953, cons=0.1728, excl=0.0008, margin=0.1863, ung_push=0.2043, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.669 F1=0.802
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 4] Loss=0.1740 (ce=0.3296, cons=0.1610, excl=0.0008, margin=0.1573, ung_push=0.1897, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.667 F1=0.800
+[Epoch 5] Loss=0.1521 (ce=0.2806, cons=0.1424, excl=0.0008, margin=0.1374, ung_push=0.1823, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.672 F1=0.804
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[TEST] P=1.000 R=0.658 F1=0.794
+[INFO] Inference results saved to /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.70_rm0.70_2026-03-08_04-03-41.jsonl
+[TEST] Inference jsonl saved: /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.70_rm0.70_2026-03-08_04-03-41.jsonl
+===== END phase2_ew0.70_rm0.70 =====
+===== START phase2_ew0.90_rm0.30 TEST_OUT=/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.90_rm0.30_2026-03-08_04-22-52.jsonl =====
+[INFO] Wrote config.py
+[INFO] DATASET=gmner
+[INFO] TRAIN_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_train.jsonl
+[INFO] DEV_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_dev.jsonl
+[INFO] TEST_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_test.jsonl
+[INFO] IMG_DIR=/workspace/IJCAI2019_data/all_images
+[INFO] NPZ_DIR=/workspace/root/data2/twitter_images/all
+[INFO] MODEL_NAME=FacebookAI/xlm-roberta-large
+[INFO] USE_XML_CLIP_REGIONS=0
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train.py
+[HP] batch=4 epochs=6 lr=5e-06 temp=0.8 | seed=13 save_best=0 | use_xml_clip_regions=0 region_dim=2048 clip_model=openai/clip-vit-base-patch32 | w(ce=0.0,cons=0.1,excl=0.9,margin=1.0) | w(ung_push=0.0) | w(rt_pull=0.0,rt_push=0.0,rt_mid_pull=0.0,anchor_align=0.0,proto_cons=0.0,mod_proto=0.0,tripod=0.0,multi_proto_cons=0.0,hybrid_proto_cons=0.0) | cons_alpha=0.3 cons_sim_thr=-1.0 cons_target_pool=mean cons_hard_topk=0 cons_include_intra=0 cons_weighted_sim=0 cons_sim_tau=0.1 cons_sim_min=-1.0 cons_sim_weight_cap=5.0 excl_margin=0.3 excl_same_type_w=1.0 excl_diff_type_w=1.0 excl_topk=0 excl_mode=sim_prob rank_margin=0.3 rank_topk=5 ung_push_margin=0.0 rt_neg_margin=0.2 rt_push_sim_weighted=0 rt_push_topk=0 rt_push_weight_power=1.0 rt_push_detach_weights=1 rt_groundability_weighted=0 rt_groundability_power=1.0 rt_groundability_min=0.0 rt_groundability_detach=1 rt_mid_alpha=0.5 anchor_align_margin=0.0 anchor_align_target_pool=max anchor_align_detach_target=1 anchor_align_include_anchor_entity=0 proto_cons_alpha=0.7 proto_min_support=2 mod_proto_alpha=0.7 mod_proto_min_support=2 tripod_margin=0.2 tripod_neg_topk=3 tripod_score_weighted_neg=1 multi_proto_alpha=0.7 multi_proto_k=3 multi_proto_min_support=2 multi_proto_assign_iters=2 hybrid_proto_alpha=0.7 hybrid_proto_k=3 hybrid_proto_min_support=2 hybrid_proto_assign_iters=2 hybrid_proto_beta=0.5 anchor_select_mode=mlp anchor_topk=1 anchor_softmax_temp=1.0 anchor_use_reliability=1 anchor_rel_gap_temp=0.1 use_multi_view=0 mv_w(ent=0.65,know=0.2,type=0.15,ctx=0.0)
+[Epoch 0] Loss=0.1776 (ce=1.0371, cons=0.3675, excl=0.0014, margin=0.1396, ung_push=0.3722, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.442 F1=0.613
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 1] Loss=0.1275 (ce=0.8334, cons=0.2341, excl=0.0007, margin=0.1034, ung_push=0.1958, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.650 F1=0.788
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 2] Loss=0.1087 (ce=0.8177, cons=0.1879, excl=0.0007, margin=0.0893, ung_push=0.1662, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.608 F1=0.757
+[Epoch 3] Loss=0.0940 (ce=0.7823, cons=0.1534, excl=0.0006, margin=0.0781, ung_push=0.1510, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.597 F1=0.748
+[Epoch 4] Loss=0.0830 (ce=0.7352, cons=0.1442, excl=0.0006, margin=0.0680, ung_push=0.1402, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.603 F1=0.753
+[Epoch 5] Loss=0.0734 (ce=0.6802, cons=0.1245, excl=0.0006, margin=0.0604, ung_push=0.1532, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.557 F1=0.715
+[TEST] P=1.000 R=0.579 F1=0.734
+[INFO] Inference results saved to /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.90_rm0.30_2026-03-08_04-22-52.jsonl
+[TEST] Inference jsonl saved: /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.90_rm0.30_2026-03-08_04-22-52.jsonl
+===== END phase2_ew0.90_rm0.30 =====
+===== START phase2_ew0.90_rm0.50 TEST_OUT=/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.90_rm0.50_2026-03-08_04-42-05.jsonl =====
+[INFO] Wrote config.py
+[INFO] DATASET=gmner
+[INFO] TRAIN_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_train.jsonl
+[INFO] DEV_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_dev.jsonl
+[INFO] TEST_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_test.jsonl
+[INFO] IMG_DIR=/workspace/IJCAI2019_data/all_images
+[INFO] NPZ_DIR=/workspace/root/data2/twitter_images/all
+[INFO] MODEL_NAME=FacebookAI/xlm-roberta-large
+[INFO] USE_XML_CLIP_REGIONS=0
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train.py
+[HP] batch=4 epochs=6 lr=5e-06 temp=0.8 | seed=13 save_best=0 | use_xml_clip_regions=0 region_dim=2048 clip_model=openai/clip-vit-base-patch32 | w(ce=0.0,cons=0.1,excl=0.9,margin=1.0) | w(ung_push=0.0) | w(rt_pull=0.0,rt_push=0.0,rt_mid_pull=0.0,anchor_align=0.0,proto_cons=0.0,mod_proto=0.0,tripod=0.0,multi_proto_cons=0.0,hybrid_proto_cons=0.0) | cons_alpha=0.3 cons_sim_thr=-1.0 cons_target_pool=mean cons_hard_topk=0 cons_include_intra=0 cons_weighted_sim=0 cons_sim_tau=0.1 cons_sim_min=-1.0 cons_sim_weight_cap=5.0 excl_margin=0.3 excl_same_type_w=1.0 excl_diff_type_w=1.0 excl_topk=0 excl_mode=sim_prob rank_margin=0.5 rank_topk=5 ung_push_margin=0.0 rt_neg_margin=0.2 rt_push_sim_weighted=0 rt_push_topk=0 rt_push_weight_power=1.0 rt_push_detach_weights=1 rt_groundability_weighted=0 rt_groundability_power=1.0 rt_groundability_min=0.0 rt_groundability_detach=1 rt_mid_alpha=0.5 anchor_align_margin=0.0 anchor_align_target_pool=max anchor_align_detach_target=1 anchor_align_include_anchor_entity=0 proto_cons_alpha=0.7 proto_min_support=2 mod_proto_alpha=0.7 mod_proto_min_support=2 tripod_margin=0.2 tripod_neg_topk=3 tripod_score_weighted_neg=1 multi_proto_alpha=0.7 multi_proto_k=3 multi_proto_min_support=2 multi_proto_assign_iters=2 hybrid_proto_alpha=0.7 hybrid_proto_k=3 hybrid_proto_min_support=2 hybrid_proto_assign_iters=2 hybrid_proto_beta=0.5 anchor_select_mode=mlp anchor_topk=1 anchor_softmax_temp=1.0 anchor_use_reliability=1 anchor_rel_gap_temp=0.1 use_multi_view=0 mv_w(ent=0.65,know=0.2,type=0.15,ctx=0.0)
+[Epoch 0] Loss=0.2743 (ce=0.8789, cons=0.3821, excl=0.0014, margin=0.2348, ung_push=0.4117, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.615 F1=0.761
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 1] Loss=0.1952 (ce=0.6347, cons=0.2428, excl=0.0009, margin=0.1701, ung_push=0.2553, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.658 F1=0.794
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 2] Loss=0.1658 (ce=0.5802, cons=0.1927, excl=0.0007, margin=0.1458, ung_push=0.1919, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.662 F1=0.797
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 3] Loss=0.1419 (ce=0.5260, cons=0.1608, excl=0.0007, margin=0.1252, ung_push=0.1673, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.651 F1=0.789
+[Epoch 4] Loss=0.1329 (ce=0.4782, cons=0.1497, excl=0.0007, margin=0.1173, ung_push=0.1495, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.686 F1=0.814
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 5] Loss=0.1200 (ce=0.4068, cons=0.1354, excl=0.0007, margin=0.1058, ung_push=0.1333, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.656 F1=0.792
+[TEST] P=1.000 R=0.662 F1=0.796
+[INFO] Inference results saved to /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.90_rm0.50_2026-03-08_04-42-05.jsonl
+[TEST] Inference jsonl saved: /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.90_rm0.50_2026-03-08_04-42-05.jsonl
+===== END phase2_ew0.90_rm0.50 =====
+===== START phase2_ew0.90_rm0.70 TEST_OUT=/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.90_rm0.70_2026-03-08_05-01-18.jsonl =====
+[INFO] Wrote config.py
+[INFO] DATASET=gmner
+[INFO] TRAIN_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_train.jsonl
+[INFO] DEV_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_dev.jsonl
+[INFO] TEST_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_test.jsonl
+[INFO] IMG_DIR=/workspace/IJCAI2019_data/all_images
+[INFO] NPZ_DIR=/workspace/root/data2/twitter_images/all
+[INFO] MODEL_NAME=FacebookAI/xlm-roberta-large
+[INFO] USE_XML_CLIP_REGIONS=0
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train.py
+[HP] batch=4 epochs=6 lr=5e-06 temp=0.8 | seed=13 save_best=0 | use_xml_clip_regions=0 region_dim=2048 clip_model=openai/clip-vit-base-patch32 | w(ce=0.0,cons=0.1,excl=0.9,margin=1.0) | w(ung_push=0.0) | w(rt_pull=0.0,rt_push=0.0,rt_mid_pull=0.0,anchor_align=0.0,proto_cons=0.0,mod_proto=0.0,tripod=0.0,multi_proto_cons=0.0,hybrid_proto_cons=0.0) | cons_alpha=0.3 cons_sim_thr=-1.0 cons_target_pool=mean cons_hard_topk=0 cons_include_intra=0 cons_weighted_sim=0 cons_sim_tau=0.1 cons_sim_min=-1.0 cons_sim_weight_cap=5.0 excl_margin=0.3 excl_same_type_w=1.0 excl_diff_type_w=1.0 excl_topk=0 excl_mode=sim_prob rank_margin=0.7 rank_topk=5 ung_push_margin=0.0 rt_neg_margin=0.2 rt_push_sim_weighted=0 rt_push_topk=0 rt_push_weight_power=1.0 rt_push_detach_weights=1 rt_groundability_weighted=0 rt_groundability_power=1.0 rt_groundability_min=0.0 rt_groundability_detach=1 rt_mid_alpha=0.5 anchor_align_margin=0.0 anchor_align_target_pool=max anchor_align_detach_target=1 anchor_align_include_anchor_entity=0 proto_cons_alpha=0.7 proto_min_support=2 mod_proto_alpha=0.7 mod_proto_min_support=2 tripod_margin=0.2 tripod_neg_topk=3 tripod_score_weighted_neg=1 multi_proto_alpha=0.7 multi_proto_k=3 multi_proto_min_support=2 multi_proto_assign_iters=2 hybrid_proto_alpha=0.7 hybrid_proto_k=3 hybrid_proto_min_support=2 hybrid_proto_assign_iters=2 hybrid_proto_beta=0.5 anchor_select_mode=mlp anchor_topk=1 anchor_softmax_temp=1.0 anchor_use_reliability=1 anchor_rel_gap_temp=0.1 use_multi_view=0 mv_w(ent=0.65,know=0.2,type=0.15,ctx=0.0)
+[Epoch 0] Loss=0.3661 (ce=0.7480, cons=0.3922, excl=0.0014, margin=0.3256, ung_push=0.3667, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.578 F1=0.733
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 1] Loss=0.2649 (ce=0.4947, cons=0.2636, excl=0.0010, margin=0.2377, ung_push=0.2911, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.628 F1=0.771
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 2] Loss=0.2269 (ce=0.4418, cons=0.2028, excl=0.0009, margin=0.2059, ung_push=0.2447, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.644 F1=0.783
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 3] Loss=0.1915 (ce=0.3847, cons=0.1734, excl=0.0008, margin=0.1734, ung_push=0.2095, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.664 F1=0.798
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 4] Loss=0.1639 (ce=0.3319, cons=0.1556, excl=0.0008, margin=0.1477, ung_push=0.1959, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.626 F1=0.770
+[Epoch 5] Loss=0.1436 (ce=0.2819, cons=0.1369, excl=0.0007, margin=0.1292, ung_push=0.1770, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.609 F1=0.757
+[TEST] P=1.000 R=0.599 F1=0.750
+[INFO] Inference results saved to /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.90_rm0.70_2026-03-08_05-01-18.jsonl
+[TEST] Inference jsonl saved: /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_phase2_ew0.90_rm0.70_2026-03-08_05-01-18.jsonl
+===== END phase2_ew0.90_rm0.70 =====
+[DONE] LOG=/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/logs/sweep_phase2_excl_rank_2026-03-08_01-29-26.log

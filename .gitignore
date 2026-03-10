@@ -1,6 +1,5 @@
 run.sh
 __pycache__
 **/runs/*
-**/logs/*
 **.pt
 **/config.py

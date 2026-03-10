@@ -277,6 +277,46 @@ def _scores_from_query_region(query, region):
     return torch.einsum("bed,brd->ber", F.normalize(query, dim=-1), F.normalize(region, dim=-1))
 
 
+def region_text_infonce_loss(reg_feats, txt_pool, labels, tau=0.07, topk_neg=0):
+    """
+    Supervised InfoNCE over entity-text (anchor) and regions:
+    - positives: regions with gold label==1 for each (b, e)
+    - negatives: regions with label==0
+    """
+    scores = _scores_from_query_region(txt_pool, reg_feats)  # [B, E, R]
+    B, E, _ = scores.shape
+    losses = []
+    tau = max(1e-6, float(tau))
+    k_neg = int(topk_neg)
+
+    for b in range(B):
+        for e in range(E):
+            pos_idx = (labels[b, e] > 0).nonzero(as_tuple=True)[0]
+            if len(pos_idx) == 0:
+                continue
+            neg_idx = (labels[b, e] == 0).nonzero(as_tuple=True)[0]
+            if len(neg_idx) == 0:
+                continue
+
+            if k_neg > 0 and k_neg < len(neg_idx):
+                neg_scores = scores[b, e, neg_idx]
+                hard_neg_local = torch.topk(neg_scores, k=k_neg).indices
+                neg_idx = neg_idx[hard_neg_local]
+
+            pos_logits = scores[b, e, pos_idx] / tau
+            neg_logits = scores[b, e, neg_idx] / tau
+            all_logits = torch.cat([pos_logits, neg_logits], dim=0)
+
+            # Multiple positives: use log-sum-exp numerator.
+            log_num = torch.logsumexp(pos_logits, dim=0)
+            log_den = torch.logsumexp(all_logits, dim=0)
+            losses.append(-(log_num - log_den))
+
+    if not losses:
+        return torch.tensor(0.0, device=reg_feats.device, requires_grad=True)
+    return torch.stack(losses).mean()
+
+
 def region_margin_loss_from_scores(scores, labels, margin=0.5, top_k=5):
     B, E, R = scores.shape
     losses = []
@@ -973,6 +1013,9 @@ def train_one_epoch(
     cons_w=0.3,
     excl_w=0.5,
     margin_w=1.0,
+    info_nce_w=0.0,
+    info_nce_tau=0.07,
+    info_nce_topk_neg=0,
     cons_alpha=0.7,
     cons_sim_thr=-1.0,
     cons_target_pool="mean",
@@ -1045,6 +1088,7 @@ def train_one_epoch(
     total_cons = 0
     total_excl = 0
     total_margin = 0
+    total_info_nce = 0
     total_rt_pull = 0
     total_rt_push = 0
     total_rt_mid_pull = 0
@@ -1169,6 +1213,17 @@ def train_one_epoch(
         else:
             loss_margin = zero
 
+        if float(info_nce_w) > 0.0:
+            loss_info_nce = region_text_infonce_loss(
+                r_margin if bool(use_multi_view) and r_margin is not None else reg_proj,
+                q_margin if bool(use_multi_view) and q_margin is not None else txt_pool,
+                tb["labels"],
+                tau=info_nce_tau,
+                topk_neg=info_nce_topk_neg,
+            )
+        else:
+            loss_info_nce = zero
+
         if float(rt_pull_w) > 0.0 or float(rt_push_w) > 0.0:
             loss_rt_pull, loss_rt_push = region_text_contrastive_loss(
                 r_excl if bool(use_multi_view) and r_excl is not None else reg_proj,
@@ -1286,6 +1341,7 @@ def train_one_epoch(
             cons_w * loss_cons +
             excl_w * loss_excl +
             margin_w * loss_margin +
+            info_nce_w * loss_info_nce +
             rt_pull_w * loss_rt_pull +
             rt_push_w * loss_rt_push +
             rt_mid_pull_w * loss_rt_mid_pull +
@@ -1306,6 +1362,7 @@ def train_one_epoch(
         total_cons += loss_cons.item()
         total_excl += loss_excl.item()
         total_margin += loss_margin.item()
+        total_info_nce += loss_info_nce.item()
         total_rt_pull += loss_rt_pull.item()
         total_rt_push += loss_rt_push.item()
         total_rt_mid_pull += loss_rt_mid_pull.item()
@@ -1323,6 +1380,7 @@ def train_one_epoch(
         "cons": total_cons / denom,
         "excl": total_excl / denom,
         "margin": total_margin / denom,
+        "info_nce": total_info_nce / denom,
         "rt_pull": total_rt_pull / denom,
         "rt_push": total_rt_push / denom,
         "rt_mid_pull": total_rt_mid_pull / denom,

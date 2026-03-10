@@ -1,0 +1,34 @@
+===== START v3_best_xlmr_vinvl_q_etc TEST_OUT=/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_v3_best_xlmr_vinvl_q_etc_2026-03-10_03-27-58.jsonl =====
+[INFO] Wrote config.py
+[INFO] DATASET=gmner
+[INFO] TRAIN_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_train.jsonl
+[INFO] DEV_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_dev.jsonl
+[INFO] TEST_JSON=/workspace/ancor-private/pipeline/pipeline/anchor-guided-collaborative-grounding/input_data/gold_data/gmner/output_test.jsonl
+[INFO] IMG_DIR=/workspace/IJCAI2019_data/all_images
+[INFO] NPZ_DIR=/workspace/root/data2/twitter_images/all
+[INFO] MODEL_NAME=FacebookAI/xlm-roberta-large
+[INFO] USE_XML_CLIP_REGIONS=0
+[INFO] USE_CLIP_REGION_ENCODER=0
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train.py
+[HP] batch=4 epochs=6 lr=5e-06 temp=0.8 | seed=45 save_best=0 | use_xml_clip_regions=0 use_clip_region_encoder=0 region_dim=2048 clip_model=openai/clip-vit-base-patch32 | w(ce=0.0,cons=0.1,excl=0.3,margin=1.0) | w(ung_push=0.0) | w(rt_pull=0.0,rt_push=0.0,rt_mid_pull=0.0,anchor_align=0.0,proto_cons=0.0,mod_proto=0.0,tripod=0.0,multi_proto_cons=0.0,hybrid_proto_cons=0.0) | cons_alpha=0.3 cons_sim_thr=-1.0 cons_target_pool=mean cons_hard_topk=0 cons_include_intra=0 cons_weighted_sim=0 cons_sim_tau=0.1 cons_sim_min=-1.0 cons_sim_weight_cap=5.0 excl_margin=0.3 excl_same_type_w=1.0 excl_diff_type_w=1.0 excl_topk=0 excl_mode=sim_prob excl_variant=pairwise excl_ent_name_w=0.7 excl_ent_type_w=0.3 excl_pair_alpha=0.5 excl_pair_beta=0.3 excl_pair_region_sim=iou excl_pair_type_mode=neutral excl_pair_type_factor=1.5 excl_pair_name_thr=0.5 excl_pair_region_thr=0.5 excl_pair_easy_scale=0.5 excl_pair_hard_scale=1.5 rank_margin=0.5 rank_topk=5 ung_push_margin=0.0 rt_neg_margin=0.2 rt_push_sim_weighted=0 rt_push_topk=0 rt_push_weight_power=1.0 rt_push_detach_weights=1 rt_groundability_weighted=0 rt_groundability_power=1.0 rt_groundability_min=0.0 rt_groundability_detach=1 rt_mid_alpha=0.5 anchor_align_margin=0.0 anchor_align_target_pool=max anchor_align_detach_target=1 anchor_align_include_anchor_entity=0 proto_cons_alpha=0.7 proto_min_support=2 mod_proto_alpha=0.7 mod_proto_min_support=2 tripod_margin=0.2 tripod_neg_topk=3 tripod_score_weighted_neg=1 multi_proto_alpha=0.7 multi_proto_k=3 multi_proto_min_support=2 multi_proto_assign_iters=2 hybrid_proto_alpha=0.7 hybrid_proto_k=3 hybrid_proto_min_support=2 hybrid_proto_assign_iters=2 hybrid_proto_beta=0.5 anchor_select_mode=mlp anchor_topk=1 anchor_softmax_temp=1.0 anchor_use_reliability=1 anchor_rel_gap_temp=0.1 use_multi_view=0 mv_w(ent=0.65,know=0.2,type=0.15,ctx=0.0)
+[Epoch 0] Loss=0.3038 (ce=1.1259, cons=0.4094, excl=0.0003, margin=0.2628, ung_push=0.9155, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.583 F1=0.737
+  [Dev-by-EntCount] E=1:acc=0.651(447/687,n=687) | E=2:acc=0.440(117/266,n=133) | E=3:acc=0.367(11/30,n=10) | E=4:acc=0.375(3/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 1] Loss=0.2018 (ce=0.9494, cons=0.2656, excl=0.0004, margin=0.1751, ung_push=1.0854, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.616 F1=0.762
+  [Dev-by-EntCount] E=1:acc=0.661(454/687,n=687) | E=2:acc=0.534(142/266,n=133) | E=3:acc=0.333(10/30,n=10) | E=4:acc=0.500(4/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 2] Loss=0.1740 (ce=0.9170, cons=0.1919, excl=0.0005, margin=0.1547, ung_push=1.2321, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.639 F1=0.780
+  [Dev-by-EntCount] E=1:acc=0.693(476/687,n=687) | E=2:acc=0.534(142/266,n=133) | E=3:acc=0.400(12/30,n=10) | E=4:acc=0.375(3/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 3] Loss=0.1516 (ce=0.9410, cons=0.1771, excl=0.0006, margin=0.1337, ung_push=1.5003, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.639 F1=0.780
+  [Dev-by-EntCount] E=1:acc=0.689(473/687,n=687) | E=2:acc=0.538(143/266,n=133) | E=3:acc=0.367(11/30,n=10) | E=4:acc=0.750(6/8,n=2)
+[Epoch 4] Loss=0.1329 (ce=0.8994, cons=0.1500, excl=0.0007, margin=0.1177, ung_push=1.6579, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.654 F1=0.791
+  [Dev-by-EntCount] E=1:acc=0.713(490/687,n=687) | E=2:acc=0.541(144/266,n=133) | E=3:acc=0.367(11/30,n=10) | E=4:acc=0.375(3/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 5] Loss=0.1124 (ce=0.7446, cons=0.1378, excl=0.0006, margin=0.0984, ung_push=1.7830, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.620 F1=0.765
+  [Dev-by-EntCount] E=1:acc=0.677(465/687,n=687) | E=2:acc=0.511(136/266,n=133) | E=3:acc=0.333(10/30,n=10) | E=4:acc=0.375(3/8,n=2)
+[TEST] P=1.000 R=0.612 F1=0.759
+[TEST-by-EntCount] E=1:acc=0.665(459/690,n=690) | E=2:acc=0.500(144/288,n=144) | E=3:acc=0.510(26/51,n=17) | E=4:acc=0.667(8/12,n=3) | E=5:acc=0.600(3/5,n=1)
+[INFO] Inference results saved to /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_v3_best_xlmr_vinvl_q_etc_2026-03-10_03-27-58.jsonl
+[TEST] Inference jsonl saved: /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_v3_best_xlmr_vinvl_q_etc_2026-03-10_03-27-58.jsonl
+===== END v3_best_xlmr_vinvl_q_etc =====

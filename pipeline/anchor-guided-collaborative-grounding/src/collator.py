@@ -1,6 +1,7 @@
+import os
 import torch
 
-MAX_REGIONS = 40
+MAX_REGIONS = int(os.getenv("MAX_REGIONS", "40"))
 
 def collate_fn(batch):
     if len(batch) == 0: return None

@@ -1,0 +1,21 @@
+[INFO] Wrote config.py
+[INFO] DATASET=gmner
+[INFO] TRAIN_JSON=/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/input_data/vk_v2_gpt41mini/train.jsonl
+[INFO] DEV_JSON=/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/input_data/vk_v2_gpt41mini/dev.jsonl
+[INFO] TEST_JSON=/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/input_data/vk_v2_gpt41mini/test.jsonl
+[INFO] IMG_DIR=/workspace/IJCAI2019_data/all_images
+[INFO] NPZ_DIR=/workspace/root/data2/twitter_images/all
+[INFO] MODEL_NAME=FacebookAI/xlm-roberta-large
+[INFO] USE_XML_CLIP_REGIONS=0
+[INFO] USE_CLIP_REGION_ENCODER=0
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train.py
+Traceback (most recent call last):
+  File "/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/main_train.py", line 372, in <module>
+    main()
+  File "/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/main_train.py", line 183, in main
+    train_loader = DataLoader(
+  File "/workspace/conda-envs/anc/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 383, in __init__
+    sampler = RandomSampler(dataset, generator=generator)  # type: ignore[arg-type]
+  File "/workspace/conda-envs/anc/lib/python3.10/site-packages/torch/utils/data/sampler.py", line 165, in __init__
+    raise ValueError(
+ValueError: num_samples should be a positive integer value, but got num_samples=0

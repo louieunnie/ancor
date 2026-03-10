@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import os
 from transformers import AutoModel
 
 class GroundingModel(nn.Module):
@@ -20,6 +21,9 @@ class GroundingModel(nn.Module):
             nn.ReLU(),
             nn.Linear(text_dim, 1)
         )
+        # When enabled, use cosine similarity between text/region embeddings
+        # for probability head instead of region_cls logits.
+        self.use_sim_head_for_probs = os.getenv("USE_SIM_HEAD_FOR_PROBS", "0").strip().lower() in {"1", "true", "yes", "y"}
 
     def forward(self, input_ids, attn_masks, region_feats, **kwargs):
         B, E, L = input_ids.shape
@@ -50,7 +54,17 @@ class GroundingModel(nn.Module):
 
         logits = torch.stack(logits_list, dim=1)  # (B, E, R)
 
-        logits_flat = logits.view(B, -1) / self.temperature
+        if self.use_sim_head_for_probs:
+            sim_logits = torch.einsum(
+                "bed,brd->ber",
+                F.normalize(txt_pooled, dim=-1),
+                F.normalize(reg_proj, dim=-1),
+            )
+            logits_for_probs = sim_logits
+        else:
+            logits_for_probs = logits
+
+        logits_flat = logits_for_probs.view(B, -1) / self.temperature
         probs_flat = torch.softmax(logits_flat, dim=1)
         probs = probs_flat.view(B, E, -1)
 
@@ -321,6 +335,47 @@ def region_margin_loss(logits, labels, margin=0.5, top_k=5):
     return torch.stack(losses).mean()
 
 
+def region_text_infonce_loss(reg_feats, txt_pool, labels, tau=0.07, topk_neg=0):
+    """
+    Supervised InfoNCE:
+    - pull: entity text vs positive (gold) regions
+    - push: entity text vs negative (non-gold) regions
+    """
+    B, E, _ = txt_pool.shape
+    reg_n = F.normalize(reg_feats, dim=-1)
+    txt_n = F.normalize(txt_pool, dim=-1)
+    scores = torch.einsum("bed,brd->ber", txt_n, reg_n)  # [B, E, R]
+    losses = []
+    tau = max(1e-6, float(tau))
+    k_neg = int(topk_neg)
+
+    for b in range(B):
+        for e in range(E):
+            pos_idx = (labels[b, e] > 0).nonzero(as_tuple=True)[0]
+            if len(pos_idx) == 0:
+                continue
+            neg_idx = (labels[b, e] == 0).nonzero(as_tuple=True)[0]
+            if len(neg_idx) == 0:
+                continue
+
+            if k_neg > 0 and k_neg < len(neg_idx):
+                neg_scores = scores[b, e, neg_idx]
+                hard_local = torch.topk(neg_scores, k=k_neg).indices
+                neg_idx = neg_idx[hard_local]
+
+            pos_logits = scores[b, e, pos_idx] / tau
+            neg_logits = scores[b, e, neg_idx] / tau
+            all_logits = torch.cat([pos_logits, neg_logits], dim=0)
+
+            log_num = torch.logsumexp(pos_logits, dim=0)
+            log_den = torch.logsumexp(all_logits, dim=0)
+            losses.append(-(log_num - log_den))
+
+    if len(losses) == 0:
+        return torch.tensor(0.0, device=reg_feats.device, requires_grad=True)
+    return torch.stack(losses).mean()
+
+
 def ungroundable_all_region_suppression_loss(logits, labels, margin=0.0):
     """
     For ungroundable entities (no positive region in labels),
@@ -437,6 +492,7 @@ def train_one_epoch(
     total_cons = 0
     total_excl = 0
     total_margin = 0
+    total_info_nce = 0
     total_ung_push = 0
     for batch in loader:
         tb = {k: v.to(device) if isinstance(v, torch.Tensor) else v for k, v in batch.items()}
@@ -476,6 +532,8 @@ def train_one_epoch(
         excl_pair_hard_scale = float(kwargs.get("excl_pair_hard_scale", 1.5))
         rank_margin = float(kwargs.get("rank_margin", 0.5))
         rank_topk = int(kwargs.get("rank_topk", 5))
+        info_nce_tau = float(kwargs.get("info_nce_tau", 0.07))
+        info_nce_topk_neg = int(kwargs.get("info_nce_topk_neg", 0))
         ung_push_margin = float(kwargs.get("ung_push_margin", 0.0))
 
         loss_ce = cross_entropy_loss(probs, tb["labels"], gate=gate)
@@ -518,6 +576,13 @@ def train_one_epoch(
             pair_hard_scale=excl_pair_hard_scale,
         )
         loss_margin = region_margin_loss(logits, tb["labels"], margin=rank_margin, top_k=rank_topk)
+        loss_info_nce = region_text_infonce_loss(
+            reg_proj,
+            txt_pool,
+            tb["labels"],
+            tau=info_nce_tau,
+            topk_neg=info_nce_topk_neg,
+        )
         loss_ung_push = ungroundable_all_region_suppression_loss(
             logits,
             tb["labels"],
@@ -529,6 +594,7 @@ def train_one_epoch(
             float(cons_w) * loss_cons +
             float(excl_w) * loss_excl +
             float(margin_w) * loss_margin +
+            float(kwargs.get("info_nce_w", 0.0)) * loss_info_nce +
             float(kwargs.get("ung_push_w", 0.0)) * loss_ung_push
         )
 
@@ -541,6 +607,7 @@ def train_one_epoch(
         total_cons += loss_cons.item()
         total_excl += loss_excl.item()
         total_margin += loss_margin.item()
+        total_info_nce += loss_info_nce.item()
         total_ung_push += loss_ung_push.item()
 
     denom = max(1, len(loader))
@@ -550,6 +617,7 @@ def train_one_epoch(
         "cons": total_cons / denom,
         "excl": total_excl / denom,
         "margin": total_margin / denom,
+        "info_nce": total_info_nce / denom,
         "ung_push": total_ung_push / denom,
         "rt_pull": 0.0,
         "rt_push": 0.0,

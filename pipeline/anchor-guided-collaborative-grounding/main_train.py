@@ -40,6 +40,10 @@ def main():
     except Exception:
         use_xml_clip_regions = False
     try:
+        from config import use_clip_region_encoder
+    except Exception:
+        use_clip_region_encoder = False
+    try:
         from config import xml_dir
     except Exception:
         xml_dir = None
@@ -52,12 +56,13 @@ def main():
     except Exception:
         clip_device = "cpu"
 
-    region_dim_default = "768" if bool(use_xml_clip_regions) else "2048"
+    region_dim_default = "768" if (bool(use_xml_clip_regions) or bool(use_clip_region_encoder)) else "2048"
     region_dim = int(os.getenv("REGION_DIM", region_dim_default))
 
     train_ds = GroundingDataset(
         train_json, npz_dir, img_dir,
         use_xml_clip_regions=use_xml_clip_regions,
+        use_clip_region_encoder=use_clip_region_encoder,
         xml_dir=xml_dir,
         clip_model_name=clip_model_name,
         clip_device=clip_device,
@@ -65,6 +70,7 @@ def main():
     dev_ds   = GroundingDataset(
         dev_json, npz_dir, img_dir,
         use_xml_clip_regions=use_xml_clip_regions,
+        use_clip_region_encoder=use_clip_region_encoder,
         xml_dir=xml_dir,
         clip_model_name=clip_model_name,
         clip_device=clip_device,
@@ -72,6 +78,7 @@ def main():
     test_ds  = GroundingDataset(
         test_json, npz_dir, img_dir,
         use_xml_clip_regions=use_xml_clip_regions,
+        use_clip_region_encoder=use_clip_region_encoder,
         xml_dir=xml_dir,
         clip_model_name=clip_model_name,
         clip_device=clip_device,
@@ -90,6 +97,9 @@ def main():
     cons_w = float(os.getenv("LOSS_CONS_W", "0.3"))
     excl_w = float(os.getenv("LOSS_EXCL_W", "0.5"))
     margin_w = float(os.getenv("LOSS_MARGIN_W", "1.0"))
+    info_nce_w = float(os.getenv("LOSS_INFO_NCE_W", "0.0"))
+    info_nce_tau = float(os.getenv("INFO_NCE_TAU", "0.07"))
+    info_nce_topk_neg = int(os.getenv("INFO_NCE_TOPK_NEG", "0"))
     cons_alpha = float(os.getenv("CONS_ALPHA", "0.65"))
     cons_sim_thr = float(os.getenv("CONS_SIM_THR", "0.5"))
     cons_target_pool = os.getenv("CONS_TARGET_POOL", "mean").strip().lower()
@@ -199,8 +209,10 @@ def main():
     print(
         f"[HP] batch={batch_size} epochs={epochs} lr={lr} temp={temperature} "
         f"| seed={seed} save_best={int(save_best)} "
-        f"| use_xml_clip_regions={int(bool(use_xml_clip_regions))} region_dim={region_dim} clip_model={clip_model_name} "
+        f"| use_xml_clip_regions={int(bool(use_xml_clip_regions))} use_clip_region_encoder={int(bool(use_clip_region_encoder))} "
+        f"region_dim={region_dim} clip_model={clip_model_name} "
         f"| w(ce={ce_w},cons={cons_w},excl={excl_w},margin={margin_w}) "
+        f"| w(info_nce={info_nce_w}) | info_nce_tau={info_nce_tau} info_nce_topk_neg={info_nce_topk_neg} "
         f"| w(ung_push={ung_push_w}) "
         f"| w(rt_pull={rt_pull_w},rt_push={rt_push_w},rt_mid_pull={rt_mid_pull_w},anchor_align={anchor_align_w},proto_cons={proto_cons_w},mod_proto={mod_proto_w},tripod={tripod_w},multi_proto_cons={multi_proto_cons_w},hybrid_proto_cons={hybrid_proto_cons_w}) "
         f"| cons_alpha={cons_alpha} cons_sim_thr={cons_sim_thr} "
@@ -249,6 +261,9 @@ def main():
             cons_w=cons_w,
             excl_w=excl_w,
             margin_w=margin_w,
+            info_nce_w=info_nce_w,
+            info_nce_tau=info_nce_tau,
+            info_nce_topk_neg=info_nce_topk_neg,
             cons_alpha=cons_alpha,
             cons_sim_thr=cons_sim_thr,
             cons_target_pool=cons_target_pool,
@@ -334,7 +349,7 @@ def main():
         print(
             f"[Epoch {epoch}] Loss={loss_dict['total']:.4f} "
             f"(ce={loss_dict['ce']:.4f}, cons={loss_dict['cons']:.4f}, excl={loss_dict['excl']:.4f}, "
-            f"margin={loss_dict['margin']:.4f}, ung_push={loss_dict['ung_push']:.4f}, rt_pull={loss_dict['rt_pull']:.4f}, rt_push={loss_dict['rt_push']:.4f}, rt_mid_pull={loss_dict['rt_mid_pull']:.4f}, anchor_align={loss_dict['anchor_align']:.4f}, "
+            f"margin={loss_dict['margin']:.4f}, info_nce={loss_dict['info_nce']:.4f}, ung_push={loss_dict['ung_push']:.4f}, rt_pull={loss_dict['rt_pull']:.4f}, rt_push={loss_dict['rt_push']:.4f}, rt_mid_pull={loss_dict['rt_mid_pull']:.4f}, anchor_align={loss_dict['anchor_align']:.4f}, "
             f"proto_cons={loss_dict['proto_cons']:.4f}, mod_proto={loss_dict['mod_proto']:.4f}, tripod={loss_dict['tripod']:.4f}, multi_proto_cons={loss_dict['multi_proto_cons']:.4f}, "
             f"hybrid_proto_cons={loss_dict['hybrid_proto_cons']:.4f}) "
             f"| Dev P={p:.3f} R={r:.3f} F1={f1:.3f}"

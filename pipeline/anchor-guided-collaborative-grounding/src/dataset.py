@@ -26,10 +26,35 @@ def _tok(text, max_length):
         return_tensors="pt",
     )
 
+
+def _env_flag(name, default="1"):
+    return os.getenv(name, default).strip().lower() in {"1", "true", "yes", "y"}
+
+
+def _build_query_prompt(ent_text, ent_type, ctx_text, know_text, use_entity, use_type, use_context, use_knowledge):
+    chunks = []
+    if use_entity:
+        if use_type:
+            chunks.append(f"Entity: {ent_text} ({ent_type}).")
+        else:
+            chunks.append(f"Entity: {ent_text}.")
+    elif use_type:
+        chunks.append(f"Type: {ent_type}.")
+    if use_context:
+        chunks.append(f"Context: {ctx_text}")
+    if use_knowledge and know_text:
+        chunks.append(f"Knowledge: {know_text}")
+    if not chunks:
+        # Keep a safe non-empty prompt for tokenizer/model stability.
+        chunks.append(f"Entity: {ent_text}.")
+    return " ".join(chunks)
+
+
 class GroundingDataset(Dataset):
     def __init__(self, jsonl_path, npz_dir, img_dir,
                  knowledge_key="visual_knowledge", transform=IMG_TFORM,
                  use_xml_clip_regions=False, xml_dir=None,
+                 use_clip_region_encoder=False,
                  clip_model_name="openai/clip-vit-base-patch32",
                  clip_device="cpu"):
         self.samples = []
@@ -38,16 +63,23 @@ class GroundingDataset(Dataset):
         self.transform = transform
         self.knowledge_key = knowledge_key
         self.use_xml_clip_regions = bool(use_xml_clip_regions)
+        self.use_clip_region_encoder = bool(use_clip_region_encoder)
         self.xml_dir = xml_dir
         self.clip_model_name = clip_model_name
         self.clip_device = clip_device
         self._region_cache = {}
+        self.prompt_use_entity = _env_flag("PROMPT_USE_ENTITY", "1")
+        self.prompt_use_type = _env_flag("PROMPT_USE_TYPE", "1")
+        self.prompt_use_context = _env_flag("PROMPT_USE_CONTEXT", "1")
+        self.prompt_use_knowledge = _env_flag("PROMPT_USE_KNOWLEDGE", "1")
 
         self.clip_processor = None
         self.clip_model = None
-        if self.use_xml_clip_regions:
+        if self.use_xml_clip_regions or self.use_clip_region_encoder:
             if not self.xml_dir:
-                raise ValueError("xml_dir is required when use_xml_clip_regions=True")
+                # XML mode strictly requires XML. Clip re-encoding mode does not.
+                if self.use_xml_clip_regions:
+                    raise ValueError("xml_dir is required when use_xml_clip_regions=True")
             self.clip_processor = AutoProcessor.from_pretrained(self.clip_model_name)
             self.clip_model = CLIPVisionModel.from_pretrained(self.clip_model_name).to(self.clip_device)
             self.clip_model.eval()
@@ -133,6 +165,15 @@ class GroundingDataset(Dataset):
                 npz = np.load(os.path.join(self.npz_dir, item["img"] + ".npz"))
                 all_boxes = npz["bounding_boxes"].astype(np.float32)
                 feats = torch.tensor(npz["box_features"], dtype=torch.float32)
+        elif self.use_clip_region_encoder:
+            npz = np.load(os.path.join(self.npz_dir, item["img"] + ".npz"))
+            all_boxes = npz["bounding_boxes"].astype(np.float32)
+            boxes = [tuple(map(int, b.tolist())) for b in all_boxes]
+            feats, all_boxes = self._clip_encode_boxes(pil_img, boxes)
+            if feats.shape[0] == 0:
+                # If CLIP encoding fails for some reason, fallback to NPZ region features.
+                feats = torch.tensor(npz["box_features"], dtype=torch.float32)
+                all_boxes = npz["bounding_boxes"].astype(np.float32)
         else:
             npz = np.load(os.path.join(self.npz_dir, item["img"] + ".npz"))
             all_boxes = npz["bounding_boxes"].astype(np.float32)
@@ -148,10 +189,16 @@ class GroundingDataset(Dataset):
 
         ents_out, labels_out = [], []
         for ent in item["entities"]:
-            prompt = f"Entity: {ent['text']} ({ent['type']}). Context: {item['text']}"
-            # prompt = f"Entity: {ent['text']} ({ent['type']})."
-            if ent["know"]:
-                prompt += f" Knowledge: {ent['know']}"
+            prompt = _build_query_prompt(
+                ent_text=ent["text"],
+                ent_type=ent["type"],
+                ctx_text=item["text"],
+                know_text=ent["know"],
+                use_entity=self.prompt_use_entity,
+                use_type=self.prompt_use_type,
+                use_context=self.prompt_use_context,
+                use_knowledge=self.prompt_use_knowledge,
+            )
             toks = _tok(prompt, 128)
             tok_ent = _tok(ent["text"], 32)
             tok_type = _tok(ent["type"], 16)
@@ -193,6 +240,7 @@ class InferenceDataset(Dataset):
     def __init__(self, jsonl_path, npz_dir, img_dir,
                  knowledge_key="visual_knowledge", transform=IMG_TFORM,
                  use_xml_clip_regions=False, xml_dir=None,
+                 use_clip_region_encoder=False,
                  clip_model_name="openai/clip-vit-base-patch32",
                  clip_device="cpu"):
         self.samples = []
@@ -201,16 +249,22 @@ class InferenceDataset(Dataset):
         self.transform = transform
         self.knowledge_key = knowledge_key
         self.use_xml_clip_regions = bool(use_xml_clip_regions)
+        self.use_clip_region_encoder = bool(use_clip_region_encoder)
         self.xml_dir = xml_dir
         self.clip_model_name = clip_model_name
         self.clip_device = clip_device
         self._region_cache = {}
+        self.prompt_use_entity = _env_flag("PROMPT_USE_ENTITY", "1")
+        self.prompt_use_type = _env_flag("PROMPT_USE_TYPE", "1")
+        self.prompt_use_context = _env_flag("PROMPT_USE_CONTEXT", "1")
+        self.prompt_use_knowledge = _env_flag("PROMPT_USE_KNOWLEDGE", "1")
 
         self.clip_processor = None
         self.clip_model = None
-        if self.use_xml_clip_regions:
+        if self.use_xml_clip_regions or self.use_clip_region_encoder:
             if not self.xml_dir:
-                raise ValueError("xml_dir is required when use_xml_clip_regions=True")
+                if self.use_xml_clip_regions:
+                    raise ValueError("xml_dir is required when use_xml_clip_regions=True")
             self.clip_processor = AutoProcessor.from_pretrained(self.clip_model_name)
             self.clip_model = CLIPVisionModel.from_pretrained(self.clip_model_name).to(self.clip_device)
             self.clip_model.eval()
@@ -291,6 +345,14 @@ class InferenceDataset(Dataset):
                 npz = np.load(os.path.join(self.npz_dir, item["img"] + ".npz"))
                 all_boxes = npz["bounding_boxes"].astype(np.float32)
                 feats = torch.tensor(npz["box_features"], dtype=torch.float32)
+        elif self.use_clip_region_encoder:
+            npz = np.load(os.path.join(self.npz_dir, item["img"] + ".npz"))
+            all_boxes = npz["bounding_boxes"].astype(np.float32)
+            boxes = [tuple(map(int, b.tolist())) for b in all_boxes]
+            feats, all_boxes = self._clip_encode_boxes(pil_img, boxes)
+            if feats.shape[0] == 0:
+                feats = torch.tensor(npz["box_features"], dtype=torch.float32)
+                all_boxes = npz["bounding_boxes"].astype(np.float32)
         else:
             npz = np.load(os.path.join(self.npz_dir, item["img"] + ".npz"))
             all_boxes = npz["bounding_boxes"].astype(np.float32)
@@ -306,9 +368,16 @@ class InferenceDataset(Dataset):
 
         ents_out = []
         for ent in item["entities"]:
-            prompt = f"Entity: {ent['text']} ({ent['type']}). Context: {item['text']}"
-            if ent["know"]:
-                prompt += f" Knowledge: {ent['know']}"
+            prompt = _build_query_prompt(
+                ent_text=ent["text"],
+                ent_type=ent["type"],
+                ctx_text=item["text"],
+                know_text=ent["know"],
+                use_entity=self.prompt_use_entity,
+                use_type=self.prompt_use_type,
+                use_context=self.prompt_use_context,
+                use_knowledge=self.prompt_use_knowledge,
+            )
             toks = _tok(prompt, 128)
             tok_ent = _tok(ent["text"], 32)
             tok_type = _tok(ent["type"], 16)
