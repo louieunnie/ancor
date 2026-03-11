@@ -1,3 +1,4 @@
+===== START single_repro excl=0.6 lr=5e-6 simhead=1 =====
 [INFO] Wrote config.py
 [INFO] DATASET=gmner
 [INFO] TRAIN_JSON=/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/input_data/vk_v2_gpt41mini/train.jsonl
@@ -19,16 +20,3 @@
 [Epoch 2] Loss=0.5340 (ce=1.3085, cons=0.1758, excl=0.0001, margin=0.5686, info_nce=0.5339, ung_push=0.5963, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.712 F1=0.832
   [Dev-by-EntCount] E=1:acc=0.758(521/687,n=687) | E=2:acc=0.613(163/266,n=133) | E=3:acc=0.467(14/30,n=10) | E=4:acc=1.000(8/8,n=2)
   ℹ️ Best model updated in-memory (disk save is OFF)
-[Epoch 3] Loss=0.4837 (ce=1.3072, cons=0.1892, excl=0.0001, margin=0.5597, info_nce=0.4836, ung_push=0.5957, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.713 F1=0.833
-  [Dev-by-EntCount] E=1:acc=0.757(520/687,n=687) | E=2:acc=0.613(163/266,n=133) | E=3:acc=0.533(16/30,n=10) | E=4:acc=1.000(8/8,n=2)
-  ℹ️ Best model updated in-memory (disk save is OFF)
-[Epoch 4] Loss=0.4243 (ce=1.3103, cons=0.1778, excl=0.0001, margin=0.5567, info_nce=0.4242, ung_push=0.6047, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.713 F1=0.833
-  [Dev-by-EntCount] E=1:acc=0.755(519/687,n=687) | E=2:acc=0.620(165/266,n=133) | E=3:acc=0.500(15/30,n=10) | E=4:acc=1.000(8/8,n=2)
-[Epoch 5] Loss=0.3575 (ce=1.2882, cons=0.1697, excl=0.0002, margin=0.5506, info_nce=0.3574, ung_push=0.5925, rt_pull=0.0000, rt_push=0.0000, rt_mid_pull=0.0000, anchor_align=0.0000, proto_cons=0.0000, mod_proto=0.0000, tripod=0.0000, multi_proto_cons=0.0000, hybrid_proto_cons=0.0000) | Dev P=1.000 R=0.717 F1=0.835
-  [Dev-by-EntCount] E=1:acc=0.766(526/687,n=687) | E=2:acc=0.613(163/266,n=133) | E=3:acc=0.467(14/30,n=10) | E=4:acc=1.000(8/8,n=2)
-  ℹ️ Best model updated in-memory (disk save is OFF)
-[TEST] P=1.000 R=0.726 F1=0.842
-[TEST-by-EntCount] E=1:acc=0.782(539/689,n=689) | E=2:acc=0.621(180/290,n=145) | E=3:acc=0.646(31/48,n=16) | E=4:acc=0.667(8/12,n=3) | E=5:acc=0.400(4/10,n=2)
-[INFO] Inference results saved to /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_reproduce_s1_both_infonce_excl06_seed45_2026-03-10_15-22-20.jsonl
-[TEST]nference jsonl saved: /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_reproduce_s1_both_infonce_excl06_seed45_2026-03-10_15-22-20.jsonl
- I

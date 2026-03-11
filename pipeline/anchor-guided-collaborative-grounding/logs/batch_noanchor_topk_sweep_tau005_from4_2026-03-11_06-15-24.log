@@ -1,0 +1,94 @@
+===== START topk4 tau=0.05 topk_neg=4 =====
+[INFO] Wrote config.py (InfoNCE+Excl slim trainer)
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train_infonce_excl.py
+[HP][InfoNCE+Excl] batch=4 epochs=6 lr=5e-06 temp=0.8 | seed=45 save_best=0 | w(excl=0.6,info_nce=1.0) | info_nce_tau=0.05 info_nce_topk_neg=4 | excl_margin=0.3 excl_mode=sim_prob excl_variant=pairwise | excl_pair(alpha=0.5,beta=0.3,region_sim=iou,type_mode=neutral,type_factor=1.5,name_thr=0.5,region_thr=0.5,easy_scale=0.5,hard_scale=1.5)
+[Epoch 0] Loss=0.6938 (excl=0.0003, info_nce=0.6936) | Dev P=1.000 R=0.687 F1=0.815
+  [Dev-by-EntCount] E=1:acc=0.729(501/687,n=687) | E=2:acc=0.598(159/266,n=133) | E=3:acc=0.433(13/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 1] Loss=0.5373 (excl=0.0003, info_nce=0.5371) | Dev P=1.000 R=0.713 F1=0.833
+  [Dev-by-EntCount] E=1:acc=0.755(519/687,n=687) | E=2:acc=0.624(166/266,n=133) | E=3:acc=0.467(14/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 2] Loss=0.4865 (excl=0.0003, info_nce=0.4863) | Dev P=1.000 R=0.713 F1=0.833
+  [Dev-by-EntCount] E=1:acc=0.757(520/687,n=687) | E=2:acc=0.624(166/266,n=133) | E=3:acc=0.433(13/30,n=10) | E=4:acc=1.000(8/8,n=2)
+[Epoch 3] Loss=0.4307 (excl=0.0002, info_nce=0.4305) | Dev P=1.000 R=0.718 F1=0.836
+  [Dev-by-EntCount] E=1:acc=0.758(521/687,n=687) | E=2:acc=0.628(167/266,n=133) | E=3:acc=0.533(16/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 4] Loss=0.3736 (excl=0.0002, info_nce=0.3735) | Dev P=1.000 R=0.730 F1=0.844
+  [Dev-by-EntCount] E=1:acc=0.769(528/687,n=687) | E=2:acc=0.647(172/266,n=133) | E=3:acc=0.500(15/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 5] Loss=0.3083 (excl=0.0002, info_nce=0.3081) | Dev P=1.000 R=0.724 F1=0.840
+  [Dev-by-EntCount] E=1:acc=0.760(522/687,n=687) | E=2:acc=0.647(172/266,n=133) | E=3:acc=0.500(15/30,n=10) | E=4:acc=1.000(8/8,n=2)
+[TEST] P=1.000 R=0.724 F1=0.840
+[TEST-by-EntCount] E=1:acc=0.784(540/689,n=689) | E=2:acc=0.614(178/290,n=145) | E=3:acc=0.604(29/48,n=16) | E=4:acc=0.667(8/12,n=3) | E=5:acc=0.400(4/10,n=2)
+===== END topk4 =====
+===== START topk8 tau=0.05 topk_neg=8 =====
+[INFO] Wrote config.py (InfoNCE+Excl slim trainer)
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train_infonce_excl.py
+[HP][InfoNCE+Excl] batch=4 epochs=6 lr=5e-06 temp=0.8 | seed=45 save_best=0 | w(excl=0.6,info_nce=1.0) | info_nce_tau=0.05 info_nce_topk_neg=8 | excl_margin=0.3 excl_mode=sim_prob excl_variant=pairwise | excl_pair(alpha=0.5,beta=0.3,region_sim=iou,type_mode=neutral,type_factor=1.5,name_thr=0.5,region_thr=0.5,easy_scale=0.5,hard_scale=1.5)
+[Epoch 0] Loss=0.7595 (excl=0.0003, info_nce=0.7593) | Dev P=1.000 R=0.688 F1=0.815
+  [Dev-by-EntCount] E=1:acc=0.729(501/687,n=687) | E=2:acc=0.602(160/266,n=133) | E=3:acc=0.433(13/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 1] Loss=0.5746 (excl=0.0003, info_nce=0.5744) | Dev P=1.000 R=0.705 F1=0.827
+  [Dev-by-EntCount] E=1:acc=0.744(511/687,n=687) | E=2:acc=0.624(166/266,n=133) | E=3:acc=0.467(14/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 2] Loss=0.5141 (excl=0.0003, info_nce=0.5139) | Dev P=1.000 R=0.710 F1=0.831
+  [Dev-by-EntCount] E=1:acc=0.758(521/687,n=687) | E=2:acc=0.609(162/266,n=133) | E=3:acc=0.433(13/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 3] Loss=0.4527 (excl=0.0002, info_nce=0.4526) | Dev P=1.000 R=0.720 F1=0.838
+  [Dev-by-EntCount] E=1:acc=0.760(522/687,n=687) | E=2:acc=0.628(167/266,n=133) | E=3:acc=0.567(17/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 4] Loss=0.3919 (excl=0.0002, info_nce=0.3918) | Dev P=1.000 R=0.711 F1=0.831
+  [Dev-by-EntCount] E=1:acc=0.758(521/687,n=687) | E=2:acc=0.605(161/266,n=133) | E=3:acc=0.500(15/30,n=10) | E=4:acc=1.000(8/8,n=2)
+[Epoch 5] Loss=0.3110 (excl=0.0002, info_nce=0.3108) | Dev P=1.000 R=0.720 F1=0.838
+  [Dev-by-EntCount] E=1:acc=0.766(526/687,n=687) | E=2:acc=0.620(165/266,n=133) | E=3:acc=0.533(16/30,n=10) | E=4:acc=0.875(7/8,n=2)
+[TEST] P=1.000 R=0.724 F1=0.840
+[TEST-by-EntCount] E=1:acc=0.784(540/689,n=689) | E=2:acc=0.617(179/290,n=145) | E=3:acc=0.604(29/48,n=16) | E=4:acc=0.667(8/12,n=3) | E=5:acc=0.400(4/10,n=2)
+===== END topk8 =====
+===== START topk16 tau=0.05 topk_neg=16 =====
+[INFO] Wrote config.py (InfoNCE+Excl slim trainer)
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train_infonce_excl.py
+[HP][InfoNCE+Excl] batch=4 epochs=6 lr=5e-06 temp=0.8 | seed=45 save_best=0 | w(excl=0.6,info_nce=1.0) | info_nce_tau=0.05 info_nce_topk_neg=16 | excl_margin=0.3 excl_mode=sim_prob excl_variant=pairwise | excl_pair(alpha=0.5,beta=0.3,region_sim=iou,type_mode=neutral,type_factor=1.5,name_thr=0.5,region_thr=0.5,easy_scale=0.5,hard_scale=1.5)
+[Epoch 0] Loss=0.7838 (excl=0.0003, info_nce=0.7836) | Dev P=1.000 R=0.703 F1=0.826
+  [Dev-by-EntCount] E=1:acc=0.744(511/687,n=687) | E=2:acc=0.613(163/266,n=133) | E=3:acc=0.500(15/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 1] Loss=0.5756 (excl=0.0003, info_nce=0.5754) | Dev P=1.000 R=0.709 F1=0.830
+  [Dev-by-EntCount] E=1:acc=0.757(520/687,n=687) | E=2:acc=0.609(162/266,n=133) | E=3:acc=0.433(13/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 2] Loss=0.5122 (excl=0.0002, info_nce=0.5120) | Dev P=1.000 R=0.715 F1=0.834
+  [Dev-by-EntCount] E=1:acc=0.766(526/687,n=687) | E=2:acc=0.609(162/266,n=133) | E=3:acc=0.433(13/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 3] Loss=0.4582 (excl=0.0002, info_nce=0.4580) | Dev P=1.000 R=0.716 F1=0.835
+  [Dev-by-EntCount] E=1:acc=0.757(520/687,n=687) | E=2:acc=0.620(165/266,n=133) | E=3:acc=0.567(17/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 4] Loss=0.4014 (excl=0.0002, info_nce=0.4012) | Dev P=1.000 R=0.727 F1=0.842
+  [Dev-by-EntCount] E=1:acc=0.773(531/687,n=687) | E=2:acc=0.632(168/266,n=133) | E=3:acc=0.433(13/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 5] Loss=0.3216 (excl=0.0002, info_nce=0.3214) | Dev P=1.000 R=0.726 F1=0.841
+  [Dev-by-EntCount] E=1:acc=0.770(529/687,n=687) | E=2:acc=0.624(166/266,n=133) | E=3:acc=0.533(16/30,n=10) | E=4:acc=1.000(8/8,n=2)
+[TEST] P=1.000 R=0.728 F1=0.843
+[TEST-by-EntCount] E=1:acc=0.785(541/689,n=689) | E=2:acc=0.624(181/290,n=145) | E=3:acc=0.604(29/48,n=16) | E=4:acc=0.667(8/12,n=3) | E=5:acc=0.500(5/10,n=2)
+===== END topk16 =====
+===== START topk32 tau=0.05 topk_neg=32 =====
+[INFO] Wrote config.py (InfoNCE+Excl slim trainer)
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train_infonce_excl.py
+[HP][InfoNCE+Excl] batch=4 epochs=6 lr=5e-06 temp=0.8 | seed=45 save_best=0 | w(excl=0.6,info_nce=1.0) | info_nce_tau=0.05 info_nce_topk_neg=32 | excl_margin=0.3 excl_mode=sim_prob excl_variant=pairwise | excl_pair(alpha=0.5,beta=0.3,region_sim=iou,type_mode=neutral,type_factor=1.5,name_thr=0.5,region_thr=0.5,easy_scale=0.5,hard_scale=1.5)
+[Epoch 0] Loss=0.8025 (excl=0.0003, info_nce=0.8023) | Dev P=1.000 R=0.698 F1=0.822
+  [Dev-by-EntCount] E=1:acc=0.741(509/687,n=687) | E=2:acc=0.602(160/266,n=133) | E=3:acc=0.500(15/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 1] Loss=0.5825 (excl=0.0003, info_nce=0.5823) | Dev P=1.000 R=0.710 F1=0.831
+  [Dev-by-EntCount] E=1:acc=0.755(519/687,n=687) | E=2:acc=0.617(164/266,n=133) | E=3:acc=0.433(13/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 2] Loss=0.5178 (excl=0.0002, info_nce=0.5177) | Dev P=1.000 R=0.713 F1=0.833
+  [Dev-by-EntCount] E=1:acc=0.758(521/687,n=687) | E=2:acc=0.617(164/266,n=133) | E=3:acc=0.467(14/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 3] Loss=0.4655 (excl=0.0002, info_nce=0.4653) | Dev P=1.000 R=0.717 F1=0.835
+  [Dev-by-EntCount] E=1:acc=0.764(525/687,n=687) | E=2:acc=0.613(163/266,n=133) | E=3:acc=0.500(15/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 4] Loss=0.4009 (excl=0.0002, info_nce=0.4008) | Dev P=1.000 R=0.715 F1=0.834
+  [Dev-by-EntCount] E=1:acc=0.761(523/687,n=687) | E=2:acc=0.605(161/266,n=133) | E=3:acc=0.567(17/30,n=10) | E=4:acc=1.000(8/8,n=2)
+[Epoch 5] Loss=0.3269 (excl=0.0002, info_nce=0.3268) | Dev P=1.000 R=0.717 F1=0.835
+  [Dev-by-EntCount] E=1:acc=0.761(523/687,n=687) | E=2:acc=0.605(161/266,n=133) | E=3:acc=0.633(19/30,n=10) | E=4:acc=1.000(8/8,n=2)
+[TEST] P=1.000 R=0.730 F1=0.844
+[TEST-by-EntCount] E=1:acc=0.790(544/689,n=689) | E=2:acc=0.624(181/290,n=145) | E=3:acc=0.604(29/48,n=16) | E=4:acc=0.667(8/12,n=3) | E=5:acc=0.400(4/10,n=2)
+===== END topk32 =====
+[BATCH_DONE] /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/logs/batch_noanchor_topk_sweep_tau005_from4_2026-03-11_06-15-24.log

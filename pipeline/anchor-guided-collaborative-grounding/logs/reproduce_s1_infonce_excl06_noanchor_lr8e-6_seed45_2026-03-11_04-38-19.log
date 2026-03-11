@@ -1,0 +1,24 @@
+===== START lr8e6 lr=8e-6 =====
+[INFO] Wrote config.py (InfoNCE+Excl slim trainer)
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train_infonce_excl.py
+[HP][InfoNCE+Excl] batch=4 epochs=6 lr=8e-06 temp=0.8 | seed=45 save_best=0 | w(excl=0.6,info_nce=1.0) | info_nce_tau=0.07 info_nce_topk_neg=0 | excl_margin=0.3 excl_mode=sim_prob excl_variant=pairwise | excl_pair(alpha=0.5,beta=0.3,region_sim=iou,type_mode=neutral,type_factor=1.5,name_thr=0.5,region_thr=0.5,easy_scale=0.5,hard_scale=1.5)
+[Epoch 0] Loss=0.7769 (excl=0.0003, info_nce=0.7767) | Dev P=1.000 R=0.691 F1=0.817
+  [Dev-by-EntCount] E=1:acc=0.735(505/687,n=687) | E=2:acc=0.594(158/266,n=133) | E=3:acc=0.467(14/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 1] Loss=0.5756 (excl=0.0002, info_nce=0.5755) | Dev P=1.000 R=0.707 F1=0.829
+  [Dev-by-EntCount] E=1:acc=0.753(517/687,n=687) | E=2:acc=0.609(162/266,n=133) | E=3:acc=0.467(14/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 2] Loss=0.5162 (excl=0.0002, info_nce=0.5161) | Dev P=1.000 R=0.712 F1=0.832
+  [Dev-by-EntCount] E=1:acc=0.763(524/687,n=687) | E=2:acc=0.602(160/266,n=133) | E=3:acc=0.467(14/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 3] Loss=0.4559 (excl=0.0002, info_nce=0.4558) | Dev P=1.000 R=0.706 F1=0.828
+  [Dev-by-EntCount] E=1:acc=0.757(520/687,n=687) | E=2:acc=0.590(157/266,n=133) | E=3:acc=0.500(15/30,n=10) | E=4:acc=1.000(8/8,n=2)
+[Epoch 4] Loss=0.4006 (excl=0.0002, info_nce=0.4005) | Dev P=1.000 R=0.713 F1=0.833
+  [Dev-by-EntCount] E=1:acc=0.758(521/687,n=687) | E=2:acc=0.602(160/266,n=133) | E=3:acc=0.600(18/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 5] Loss=0.3303 (excl=0.0002, info_nce=0.3302) | Dev P=1.000 R=0.726 F1=0.841
+  [Dev-by-EntCount] E=1:acc=0.761(523/687,n=687) | E=2:acc=0.643(171/266,n=133) | E=3:acc=0.567(17/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[TEST] P=1.000 R=0.709 F1=0.830
+[TEST-by-EntCount] E=1:acc=0.774(533/689,n=689) | E=2:acc=0.590(171/290,n=145) | E=3:acc=0.562(27/48,n=16) | E=4:acc=0.667(8/12,n=3) | E=5:acc=0.500(5/10,n=2)
+===== END lr8e6 =====

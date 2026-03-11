@@ -1,0 +1,24 @@
+===== START topk16 tau=0.05 topk_neg=16 =====
+[INFO] Wrote config.py (InfoNCE+Excl slim trainer)
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train_infonce_excl.py
+[HP][InfoNCE+Excl] batch=4 epochs=6 lr=5e-06 temp=0.8 | seed=45 save_best=0 | w(excl=0.6,info_nce=1.0) | info_nce_tau=0.05 info_nce_topk_neg=16 | excl_margin=0.3 excl_mode=sim_prob excl_variant=pairwise | excl_pair(alpha=0.5,beta=0.3,region_sim=iou,type_mode=neutral,type_factor=1.5,name_thr=0.5,region_thr=0.5,easy_scale=0.5,hard_scale=1.5)
+[Epoch 0] Loss=0.7838 (excl=0.0003, info_nce=0.7836) | Dev P=1.000 R=0.703 F1=0.826
+  [Dev-by-EntCount] E=1:acc=0.744(511/687,n=687) | E=2:acc=0.613(163/266,n=133) | E=3:acc=0.500(15/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 1] Loss=0.5756 (excl=0.0003, info_nce=0.5754) | Dev P=1.000 R=0.709 F1=0.830
+  [Dev-by-EntCount] E=1:acc=0.757(520/687,n=687) | E=2:acc=0.609(162/266,n=133) | E=3:acc=0.433(13/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 2] Loss=0.5122 (excl=0.0002, info_nce=0.5120) | Dev P=1.000 R=0.715 F1=0.834
+  [Dev-by-EntCount] E=1:acc=0.766(526/687,n=687) | E=2:acc=0.609(162/266,n=133) | E=3:acc=0.433(13/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 3] Loss=0.4582 (excl=0.0002, info_nce=0.4580) | Dev P=1.000 R=0.716 F1=0.835
+  [Dev-by-EntCount] E=1:acc=0.757(520/687,n=687) | E=2:acc=0.620(165/266,n=133) | E=3:acc=0.567(17/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 4] Loss=0.4014 (excl=0.0002, info_nce=0.4012) | Dev P=1.000 R=0.727 F1=0.842
+  [Dev-by-EntCount] E=1:acc=0.773(531/687,n=687) | E=2:acc=0.632(168/266,n=133) | E=3:acc=0.433(13/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 5] Loss=0.3216 (excl=0.0002, info_nce=0.3214) | Dev P=1.000 R=0.726 F1=0.841
+  [Dev-by-EntCount] E=1:acc=0.770(529/687,n=687) | E=2:acc=0.624(166/266,n=133) | E=3:acc=0.533(16/30,n=10) | E=4:acc=1.000(8/8,n=2)
+[TEST] P=1.000 R=0.728 F1=0.843
+[TEST-by-EntCount] E=1:acc=0.785(541/689,n=689) | E=2:acc=0.624(181/290,n=145) | E=3:acc=0.604(29/48,n=16) | E=4:acc=0.667(8/12,n=3) | E=5:acc=0.500(5/10,n=2)
+===== END topk16 =====
