@@ -1,0 +1,4 @@
+===== START infonce_exclw0.6_tau005_topk16_iou_simhead1 TEST_OUT=/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_infonce_exclw0.6_tau005_topk16_iou_simhead1_2026-03-11_11-33-37.jsonl =====
+[INFO] Wrote config.py (InfoNCE+Excl slim trainer)
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train_infonce_excl.py
+[HP][InfoNCE+Excl] batch=4 epochs=6 lr=5e-06 temp=0.8 | seed=45 save_best=0 | w(excl=0.6,info_nce=1.0) | info_nce_tau=0.05 info_nce_topk_neg=16 | excl_margin=0.3 excl_mode=sim_prob excl_variant=pairwise | excl_pair(alpha=0.5,beta=0.3,region_sim=iou,type_mode=neutral,type_factor=1.5,name_thr=0.5,region_thr=0.5,easy_scale=0.5,hard_scale=1.5)

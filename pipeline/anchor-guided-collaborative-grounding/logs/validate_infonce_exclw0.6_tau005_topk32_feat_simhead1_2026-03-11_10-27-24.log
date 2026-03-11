@@ -1,0 +1,27 @@
+===== START infonce_exclw0.6_tau005_topk32_feat_simhead1 TEST_OUT=/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_infonce_exclw0.6_tau005_topk32_feat_simhead1_2026-03-11_10-27-24.jsonl =====
+[INFO] Wrote config.py (InfoNCE+Excl slim trainer)
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train_infonce_excl.py
+[HP][InfoNCE+Excl] batch=4 epochs=6 lr=5e-06 temp=0.8 | seed=45 save_best=0 | w(excl=0.6,info_nce=1.0) | info_nce_tau=0.05 info_nce_topk_neg=32 | excl_margin=0.3 excl_mode=sim_prob excl_variant=pairwise | excl_pair(alpha=0.5,beta=0.3,region_sim=feat,type_mode=neutral,type_factor=1.5,name_thr=0.5,region_thr=0.5,easy_scale=0.5,hard_scale=1.5)
+[Epoch 0] Loss=0.8016 (excl=0.0001, info_nce=0.8015) | Dev P=1.000 R=0.697 F1=0.822
+  [Dev-by-EntCount] E=1:acc=0.737(506/687,n=687) | E=2:acc=0.617(164/266,n=133) | E=3:acc=0.433(13/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 1] Loss=0.5903 (excl=0.0001, info_nce=0.5903) | Dev P=1.000 R=0.705 F1=0.827
+  [Dev-by-EntCount] E=1:acc=0.745(512/687,n=687) | E=2:acc=0.620(165/266,n=133) | E=3:acc=0.467(14/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 2] Loss=0.5263 (excl=0.0001, info_nce=0.5263) | Dev P=1.000 R=0.712 F1=0.832
+  [Dev-by-EntCount] E=1:acc=0.757(520/687,n=687) | E=2:acc=0.617(164/266,n=133) | E=3:acc=0.467(14/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 3] Loss=0.4662 (excl=0.0001, info_nce=0.4661) | Dev P=1.000 R=0.717 F1=0.835
+  [Dev-by-EntCount] E=1:acc=0.760(522/687,n=687) | E=2:acc=0.617(164/266,n=133) | E=3:acc=0.567(17/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 4] Loss=0.4114 (excl=0.0001, info_nce=0.4113) | Dev P=1.000 R=0.723 F1=0.839
+  [Dev-by-EntCount] E=1:acc=0.766(526/687,n=687) | E=2:acc=0.624(166/266,n=133) | E=3:acc=0.533(16/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 5] Loss=0.3446 (excl=0.0001, info_nce=0.3445) | Dev P=1.000 R=0.725 F1=0.840
+  [Dev-by-EntCount] E=1:acc=0.764(525/687,n=687) | E=2:acc=0.632(168/266,n=133) | E=3:acc=0.567(17/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[TEST] P=1.000 R=0.731 F1=0.845
+[TEST-by-EntCount] E=1:acc=0.792(546/689,n=689) | E=2:acc=0.624(181/290,n=145) | E=3:acc=0.583(28/48,n=16) | E=4:acc=0.667(8/12,n=3) | E=5:acc=0.400(4/10,n=2)
+[INFO] Inference results saved to /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_infonce_exclw0.6_tau005_topk32_feat_simhead1_2026-03-11_10-27-24.jsonl
+[TEST] Inference jsonl saved: /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_infonce_exclw0.6_tau005_topk32_feat_simhead1_2026-03-11_10-27-24.jsonl
+===== END infonce_exclw0.6_tau005_topk32_feat_simhead1 =====

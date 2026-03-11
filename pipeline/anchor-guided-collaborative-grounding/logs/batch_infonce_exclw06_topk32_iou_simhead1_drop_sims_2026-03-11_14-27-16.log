@@ -1,0 +1,18 @@
+===== START drop_query_sim alpha=0.0 beta=0.3 =====
+[INFO] Wrote config.py (InfoNCE+Excl slim trainer)
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train_infonce_excl.py
+Some weights of RobertaModel were not initialized from the model checkpoint at roberta-large and are newly initialized: ['pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+[HP][InfoNCE+Excl] batch=4 epochs=6 lr=5e-06 temp=0.8 | seed=45 save_best=0 | w(excl=0.6,info_nce=1.0) | info_nce_tau=0.05 info_nce_topk_neg=32 | excl_margin=0.3 excl_mode=sim_prob excl_variant=pairwise | excl_pair(alpha=0.0,beta=0.3,region_sim=iou,type_mode=neutral,type_factor=1.5,name_thr=0.5,region_thr=0.5,easy_scale=0.5,hard_scale=1.5)
+[Epoch 0] Loss=0.8040 (excl=0.0003, info_nce=0.8038) | Dev P=0.000 R=0.000 F1=0.000
+  [Dev-by-EntCount] E=1:acc=0.000(0/687,n=687) | E=2:acc=0.000(0/266,n=133) | E=3:acc=0.000(0/30,n=10) | E=4:acc=0.000(0/8,n=2)
+Terminated
+===== END drop_query_sim =====
+===== START drop_region_sim alpha=0.5 beta=0.0 =====
+[INFO] Wrote config.py (InfoNCE+Excl slim trainer)
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train_infonce_excl.py
+Some weights of RobertaModel were not initialized from the model checkpoint at roberta-large and are newly initialized: ['pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+[HP][InfoNCE+Excl] batch=4 epochs=6 lr=5e-06 temp=0.8 | seed=45 save_best=0 | w(excl=0.6,info_nce=1.0) | info_nce_tau=0.05 info_nce_topk_neg=32 | excl_margin=0.3 excl_mode=sim_prob excl_variant=pairwise | excl_pair(alpha=0.5,beta=0.0,region_sim=iou,type_mode=neutral,type_factor=1.5,name_thr=0.5,region_thr=0.5,easy_scale=0.5,hard_scale=1.5)
+[Epoch 0] Loss=0.8087 (excl=0.0001, info_nce=0.8086) | Dev P=0.000 R=0.000 F1=0.000
+  [Dev-by-EntCount] E=1:acc=0.000(0/687,n=687) | E=2:acc=0.000(0/266,n=133) | E=3:acc=0.000(0/30,n=10) | E=4:acc=0.000(0/8,n=2)

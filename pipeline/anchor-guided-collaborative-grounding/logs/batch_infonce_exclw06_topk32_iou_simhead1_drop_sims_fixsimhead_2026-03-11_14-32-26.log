@@ -1,0 +1,84 @@
+===== START drop_query_sim alpha=0.0 beta=0.3 simhead=1 =====
+[INFO] Wrote config.py (InfoNCE+Excl slim trainer)
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train_infonce_excl.py
+Some weights of RobertaModel were not initialized from the model checkpoint at roberta-large and are newly initialized: ['pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+[HP][InfoNCE+Excl] batch=4 epochs=6 lr=5e-06 temp=0.8 | seed=45 save_best=0 | w(excl=0.6,info_nce=1.0) | info_nce_tau=0.05 info_nce_topk_neg=32 | excl_margin=0.3 excl_mode=sim_prob excl_variant=pairwise | excl_pair(alpha=0.0,beta=0.3,region_sim=iou,type_mode=neutral,type_factor=1.5,name_thr=0.5,region_thr=0.5,easy_scale=0.5,hard_scale=1.5)
+[Epoch 0] Loss=0.8085 (excl=0.0004, info_nce=0.8083) | Dev P=1.000 R=0.701 F1=0.824
+  [Dev-by-EntCount] E=1:acc=0.742(510/687,n=687) | E=2:acc=0.617(164/266,n=133) | E=3:acc=0.433(13/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 1] Loss=0.5821 (excl=0.0003, info_nce=0.5819) | Dev P=1.000 R=0.710 F1=0.831
+  [Dev-by-EntCount] E=1:acc=0.751(516/687,n=687) | E=2:acc=0.620(165/266,n=133) | E=3:acc=0.500(15/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 2] Loss=0.4994 (excl=0.0003, info_nce=0.4992) | Dev P=1.000 R=0.716 F1=0.835
+  [Dev-by-EntCount] E=1:acc=0.753(517/687,n=687) | E=2:acc=0.639(170/266,n=133) | E=3:acc=0.500(15/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 3] Loss=0.4260 (excl=0.0002, info_nce=0.4259) | Dev P=1.000 R=0.725 F1=0.840
+  [Dev-by-EntCount] E=1:acc=0.764(525/687,n=687) | E=2:acc=0.635(169/266,n=133) | E=3:acc=0.567(17/30,n=10) | E=4:acc=0.875(7/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 4] Loss=0.3338 (excl=0.0002, info_nce=0.3337) | Dev P=1.000 R=0.736 F1=0.848
+  [Dev-by-EntCount] E=1:acc=0.770(529/687,n=687) | E=2:acc=0.658(175/266,n=133) | E=3:acc=0.600(18/30,n=10) | E=4:acc=0.875(7/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 5] Loss=0.2468 (excl=0.0002, info_nce=0.2466) | Dev P=1.000 R=0.728 F1=0.842
+  [Dev-by-EntCount] E=1:acc=0.763(524/687,n=687) | E=2:acc=0.654(174/266,n=133) | E=3:acc=0.600(18/30,n=10) | E=4:acc=0.625(5/8,n=2)
+[TEST] P=1.000 R=0.720 F1=0.837
+[TEST-by-EntCount] E=1:acc=0.784(540/689,n=689) | E=2:acc=0.603(175/290,n=145) | E=3:acc=0.583(28/48,n=16) | E=4:acc=0.583(7/12,n=3) | E=5:acc=0.500(5/10,n=2)
+[INFO] Inference results saved to /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_drop_query_sim_fixsimhead_2026-03-11_14-32-26.jsonl
+[TEST] Inference jsonl saved: /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_drop_query_sim_fixsimhead_2026-03-11_14-32-26.jsonl
+===== END drop_query_sim =====
+===== START drop_region_sim alpha=0.5 beta=0.0 simhead=1 =====
+[INFO] Wrote config.py (InfoNCE+Excl slim trainer)
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train_infonce_excl.py
+Some weights of RobertaModel were not initialized from the model checkpoint at roberta-large and are newly initialized: ['pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+[HP][InfoNCE+Excl] batch=4 epochs=6 lr=5e-06 temp=0.8 | seed=45 save_best=0 | w(excl=0.6,info_nce=1.0) | info_nce_tau=0.05 info_nce_topk_neg=32 | excl_margin=0.3 excl_mode=sim_prob excl_variant=pairwise | excl_pair(alpha=0.5,beta=0.0,region_sim=iou,type_mode=neutral,type_factor=1.5,name_thr=0.5,region_thr=0.5,easy_scale=0.5,hard_scale=1.5)
+[Epoch 0] Loss=0.8060 (excl=0.0001, info_nce=0.8060) | Dev P=1.000 R=0.697 F1=0.822
+  [Dev-by-EntCount] E=1:acc=0.734(504/687,n=687) | E=2:acc=0.617(164/266,n=133) | E=3:acc=0.500(15/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 1] Loss=0.5762 (excl=0.0001, info_nce=0.5761) | Dev P=1.000 R=0.712 F1=0.832
+  [Dev-by-EntCount] E=1:acc=0.747(513/687,n=687) | E=2:acc=0.635(169/266,n=133) | E=3:acc=0.533(16/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 2] Loss=0.4987 (excl=0.0001, info_nce=0.4986) | Dev P=1.000 R=0.711 F1=0.831
+  [Dev-by-EntCount] E=1:acc=0.757(520/687,n=687) | E=2:acc=0.613(163/266,n=133) | E=3:acc=0.467(14/30,n=10) | E=4:acc=1.000(8/8,n=2)
+[Epoch 3] Loss=0.4226 (excl=0.0001, info_nce=0.4225) | Dev P=1.000 R=0.710 F1=0.831
+  [Dev-by-EntCount] E=1:acc=0.748(514/687,n=687) | E=2:acc=0.620(165/266,n=133) | E=3:acc=0.567(17/30,n=10) | E=4:acc=1.000(8/8,n=2)
+[Epoch 4] Loss=0.3402 (excl=0.0001, info_nce=0.3402) | Dev P=1.000 R=0.724 F1=0.840
+  [Dev-by-EntCount] E=1:acc=0.761(523/687,n=687) | E=2:acc=0.639(170/266,n=133) | E=3:acc=0.533(16/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 5] Loss=0.2503 (excl=0.0001, info_nce=0.2503) | Dev P=1.000 R=0.725 F1=0.840
+  [Dev-by-EntCount] E=1:acc=0.763(524/687,n=687) | E=2:acc=0.635(169/266,n=133) | E=3:acc=0.567(17/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[TEST] P=1.000 R=0.727 F1=0.842
+[TEST-by-EntCount] E=1:acc=0.785(541/689,n=689) | E=2:acc=0.624(181/290,n=145) | E=3:acc=0.604(29/48,n=16) | E=4:acc=0.667(8/12,n=3) | E=5:acc=0.400(4/10,n=2)
+[INFO] Inference results saved to /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_drop_region_sim_fixsimhead_2026-03-11_14-32-26.jsonl
+[TEST] Inference jsonl saved: /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_drop_region_sim_fixsimhead_2026-03-11_14-32-26.jsonl
+===== END drop_region_sim =====
+===== START drop_type_sim alpha=0.625 beta=0.375 simhead=1 =====
+[INFO] Wrote config.py (InfoNCE+Excl slim trainer)
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train_infonce_excl.py
+Some weights of RobertaModel were not initialized from the model checkpoint at roberta-large and are newly initialized: ['pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+[HP][InfoNCE+Excl] batch=4 epochs=6 lr=5e-06 temp=0.8 | seed=45 save_best=0 | w(excl=0.6,info_nce=1.0) | info_nce_tau=0.05 info_nce_topk_neg=32 | excl_margin=0.3 excl_mode=sim_prob excl_variant=pairwise | excl_pair(alpha=0.625,beta=0.375,region_sim=iou,type_mode=neutral,type_factor=1.5,name_thr=0.5,region_thr=0.5,easy_scale=0.5,hard_scale=1.5)
+[Epoch 0] Loss=0.8061 (excl=0.0003, info_nce=0.8059) | Dev P=1.000 R=0.695 F1=0.820
+  [Dev-by-EntCount] E=1:acc=0.738(507/687,n=687) | E=2:acc=0.605(161/266,n=133) | E=3:acc=0.433(13/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 1] Loss=0.5730 (excl=0.0003, info_nce=0.5728) | Dev P=1.000 R=0.705 F1=0.827
+  [Dev-by-EntCount] E=1:acc=0.748(514/687,n=687) | E=2:acc=0.609(162/266,n=133) | E=3:acc=0.500(15/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 2] Loss=0.4912 (excl=0.0003, info_nce=0.4911) | Dev P=1.000 R=0.717 F1=0.835
+  [Dev-by-EntCount] E=1:acc=0.763(524/687,n=687) | E=2:acc=0.617(164/266,n=133) | E=3:acc=0.500(15/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 3] Loss=0.4138 (excl=0.0002, info_nce=0.4137) | Dev P=1.000 R=0.729 F1=0.843
+  [Dev-by-EntCount] E=1:acc=0.767(527/687,n=687) | E=2:acc=0.635(169/266,n=133) | E=3:acc=0.600(18/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 4] Loss=0.3242 (excl=0.0002, info_nce=0.3241) | Dev P=1.000 R=0.725 F1=0.840
+  [Dev-by-EntCount] E=1:acc=0.764(525/687,n=687) | E=2:acc=0.635(169/266,n=133) | E=3:acc=0.633(19/30,n=10) | E=4:acc=0.625(5/8,n=2)
+[Epoch 5] Loss=0.2437 (excl=0.0003, info_nce=0.2435) | Dev P=1.000 R=0.742 F1=0.852
+  [Dev-by-EntCount] E=1:acc=0.774(532/687,n=687) | E=2:acc=0.673(179/266,n=133) | E=3:acc=0.567(17/30,n=10) | E=4:acc=0.875(7/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[TEST] P=1.000 R=0.724 F1=0.840
+[TEST-by-EntCount] E=1:acc=0.787(542/689,n=689) | E=2:acc=0.614(178/290,n=145) | E=3:acc=0.583(28/48,n=16) | E=4:acc=0.583(7/12,n=3) | E=5:acc=0.400(4/10,n=2)
+[INFO] Inference results saved to /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_drop_type_sim_fixsimhead_2026-03-11_14-32-26.jsonl
+[TEST] Inference jsonl saved: /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/test_drop_type_sim_fixsimhead_2026-03-11_14-32-26.jsonl
+===== END drop_type_sim =====
+[BATCH_DONE] /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/logs/batch_infonce_exclw06_topk32_iou_simhead1_drop_sims_fixsimhead_2026-03-11_14-32-26.log
