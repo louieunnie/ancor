@@ -1,0 +1,7 @@
+[START] paper ablation with save
+[CFG] LOG_FILE=logs/paper_ablation_save_2026-03-21_23-31-21.log
+[START] phase=alpha log=logs/paper_ablation_save_2026-03-21_23-31-21.log
+============================================================
+[RUN] alpha_sweep_a0.3_b0.3
+============================================================
+run_paper_hyperparam_sweep.sh: line 91: EXCL_PAIR_GAMMA=: command not found

@@ -1,0 +1,12 @@
+[INFO] Wrote config.py (InfoNCE+Excl slim trainer)
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train_infonce_excl.py
+Traceback (most recent call last):
+  File "/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/main_train_infonce_excl.py", line 165, in <module>
+    main()
+  File "/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/main_train_infonce_excl.py", line 87, in main
+    train_loader = DataLoader(
+  File "/workspace/conda-envs/anc/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 383, in __init__
+    sampler = RandomSampler(dataset, generator=generator)  # type: ignore[arg-type]
+  File "/workspace/conda-envs/anc/lib/python3.10/site-packages/torch/utils/data/sampler.py", line 165, in __init__
+    raise ValueError(
+ValueError: num_samples should be a positive integer value, but got num_samples=0

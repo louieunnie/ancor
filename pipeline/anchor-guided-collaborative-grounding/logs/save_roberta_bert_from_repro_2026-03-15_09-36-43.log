@@ -1,0 +1,20 @@
+[START] logs/save_roberta_bert_from_repro_2026-03-15_09-36-43.log
+============================================================
+[RUN] roberta_repro_save_best
+[RUN] model=roberta-large lr=5e-6 save_path=/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/best_roberta_repro_seed45.pt
+[RUN] train=/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/input_data/vk_v2_gpt41mini/gmner_gold/train.jsonl
+[RUN] dev=/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/input_data/vk_v2_gpt41mini/dev.jsonl
+[RUN] test=/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/input_data/vk_v2_gpt41mini/gmner_gold/test.jsonl
+============================================================
+[INFO] Wrote config.py (InfoNCE+Excl slim trainer)
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train_infonce_excl.py
+Traceback (most recent call last):
+  File "/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/main_train_infonce_excl.py", line 165, in <module>
+    main()
+  File "/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/main_train_infonce_excl.py", line 87, in main
+    train_loader = DataLoader(
+  File "/workspace/conda-envs/anc/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 383, in __init__
+    sampler = RandomSampler(dataset, generator=generator)  # type: ignore[arg-type]
+  File "/workspace/conda-envs/anc/lib/python3.10/site-packages/torch/utils/data/sampler.py", line 165, in __init__
+    raise ValueError(
+ValueError: num_samples should be a positive integer value, but got num_samples=0

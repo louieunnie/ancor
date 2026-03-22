@@ -1,0 +1,23 @@
+Some weights of RobertaModel were not initialized from the model checkpoint at roberta-large and are newly initialized: ['pooler.dense.bias', 'pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+[HP][InfoNCE+Excl] batch=4 epochs=6 lr=5e-06 temp=0.8 | seed=45 save_best=0 | w(excl=0.6,info_nce=1.0) | info_nce_tau=0.05 info_nce_topk_neg=32 | excl_margin=0.3 excl_mode=sim_prob excl_variant=pairwise | excl_pair(alpha=0.5,beta=0.3,region_sim=iou,type_mode=neutral,type_factor=1.5,name_thr=0.5,region_thr=0.5,easy_scale=0.5,hard_scale=1.5)
+[Epoch 0] Loss=0.8044 (excl=0.0003, info_nce=0.8043) | Dev P=1.000 R=0.693 F1=0.819
+  [Dev-by-EntCount] E=1:acc=0.734(504/687,n=687) | E=2:acc=0.609(162/266,n=133) | E=3:acc=0.433(13/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 1] Loss=0.5798 (excl=0.0003, info_nce=0.5797) | Dev P=1.000 R=0.709 F1=0.830
+  [Dev-by-EntCount] E=1:acc=0.753(517/687,n=687) | E=2:acc=0.620(165/266,n=133) | E=3:acc=0.433(13/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 2] Loss=0.4956 (excl=0.0002, info_nce=0.4954) | Dev P=1.000 R=0.717 F1=0.835
+  [Dev-by-EntCount] E=1:acc=0.764(525/687,n=687) | E=2:acc=0.609(162/266,n=133) | E=3:acc=0.533(16/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 3] Loss=0.4254 (excl=0.0002, info_nce=0.4253) | Dev P=1.000 R=0.720 F1=0.838
+  [Dev-by-EntCount] E=1:acc=0.760(522/687,n=687) | E=2:acc=0.624(166/266,n=133) | E=3:acc=0.600(18/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 4] Loss=0.3325 (excl=0.0002, info_nce=0.3323) | Dev P=1.000 R=0.724 F1=0.840
+  [Dev-by-EntCount] E=1:acc=0.763(524/687,n=687) | E=2:acc=0.628(167/266,n=133) | E=3:acc=0.600(18/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[Epoch 5] Loss=0.2484 (excl=0.0002, info_nce=0.2482) | Dev P=1.000 R=0.725 F1=0.840
+  [Dev-by-EntCount] E=1:acc=0.763(524/687,n=687) | E=2:acc=0.639(170/266,n=133) | E=3:acc=0.600(18/30,n=10) | E=4:acc=0.750(6/8,n=2)
+  ℹ️ Best model updated in-memory (disk save is OFF)
+[TEST] P=1.000 R=0.726 F1=0.842
+[TEST-by-EntCount] E=1:acc=0.785(541/689,n=689) | E=2:acc=0.621(180/290,n=145) | E=3:acc=0.604(29/48,n=16) | E=4:acc=0.667(8/12,n=3) | E=5:acc=0.400(4/10,n=2)

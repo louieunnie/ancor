@@ -17,12 +17,8 @@ class GroundingModel(nn.Module):
             nn.Linear(text_dim, text_dim), nn.ReLU(), nn.Linear(text_dim, 1)
         )
         self.temperature = temperature
-        self.use_sim_head_for_probs = os.getenv("USE_SIM_HEAD_FOR_PROBS", "0").strip().lower() in {
-            "1",
-            "true",
-            "yes",
-            "y",
-        }
+        # Force sim-head probabilities for stable prediction behavior.
+        self.use_sim_head_for_probs = True
 
     def forward(self, input_ids, attn_masks, region_feats, **kwargs):
         del kwargs
@@ -73,6 +69,7 @@ def anchor_exclusion_loss(
     region_boxes=None,
     pair_alpha=0.5,
     pair_beta=0.3,
+    pair_gamma=None,
     pair_region_sim="iou",
     pair_type_mode="neutral",
     pair_type_factor=1.5,
@@ -93,8 +90,17 @@ def anchor_exclusion_loss(
 
     alpha = max(0.0, float(pair_alpha))
     beta = max(0.0, float(pair_beta))
-    gamma = max(0.0, 1.0 - alpha - beta)
-    pair_region_sim_l = str(pair_region_sim).lower().strip()
+    if pair_gamma is None:
+        gamma = max(0.0, 1.0 - alpha - beta)
+    else:
+        gamma = max(0.0, float(pair_gamma))
+        s = alpha + beta + gamma
+        if s > 0:
+            alpha, beta, gamma = alpha / s, beta / s, gamma / s
+        else:
+            alpha, beta, gamma = 1.0 / 3.0, 1.0 / 3.0, 1.0 / 3.0
+    # Keep argument for backward compatibility, but region similarity is fixed to IoU.
+    _ = pair_region_sim
     pair_type_mode_l = str(pair_type_mode).lower().strip()
     type_factor = max(0.0, float(pair_type_factor))
     name_thr = min(1.0, max(0.0, float(pair_name_thr)))
@@ -153,14 +159,8 @@ def anchor_exclusion_loss(
                     elif pair_type_mode_l == "smooth":
                         type_sim = type_sim / max(type_factor, 1e-6)
 
-                if pair_region_sim_l == "feat":
-                    region_sim = F.cosine_similarity(proto_e.unsqueeze(0), prototypes[e2].unsqueeze(0)).squeeze(0)
-                    region_sim = (region_sim + 1.0) * 0.5
-                elif pair_region_sim_l == "iou":
-                    boxes_b = None if region_boxes is None else region_boxes[b]
-                    region_sim = _pairwise_iou_sim(boxes_b, pos_indices[e], pos_indices[e2])
-                else:
-                    region_sim = torch.tensor(0.5, device=probs.device)
+                boxes_b = None if region_boxes is None else region_boxes[b]
+                region_sim = _pairwise_iou_sim(boxes_b, pos_indices[e], pos_indices[e2])
 
                 pair_dis = (alpha * (1.0 - name_sim)) + (beta * (1.0 - region_sim)) + (gamma * (1.0 - type_sim))
                 similar_pair = bool((name_sim >= name_thr).item()) or bool((region_sim >= region_thr).item())
@@ -244,6 +244,11 @@ def train_one_epoch(
             region_boxes=tb.get("region_boxes", None),
             pair_alpha=float(kwargs.get("excl_pair_alpha", 0.5)),
             pair_beta=float(kwargs.get("excl_pair_beta", 0.3)),
+            pair_gamma=(
+                float(kwargs["excl_pair_gamma"])
+                if kwargs.get("excl_pair_gamma") is not None
+                else None
+            ),
             pair_region_sim=str(kwargs.get("excl_pair_region_sim", "iou")),
             pair_type_mode=str(kwargs.get("excl_pair_type_mode", "neutral")),
             pair_type_factor=float(kwargs.get("excl_pair_type_factor", 1.5)),

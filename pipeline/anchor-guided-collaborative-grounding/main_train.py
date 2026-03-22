@@ -35,53 +35,17 @@ def main():
             )
         return " | ".join(parts)
 
-    try:
-        from config import use_xml_clip_regions
-    except Exception:
-        use_xml_clip_regions = False
-    try:
-        from config import use_clip_region_encoder
-    except Exception:
-        use_clip_region_encoder = False
-    try:
-        from config import xml_dir
-    except Exception:
-        xml_dir = None
-    try:
-        from config import clip_model_name
-    except Exception:
-        clip_model_name = "openai/clip-vit-base-patch32"
-    try:
-        from config import clip_device
-    except Exception:
-        clip_device = "cpu"
-
-    region_dim_default = "768" if (bool(use_xml_clip_regions) or bool(use_clip_region_encoder)) else "2048"
-    region_dim = int(os.getenv("REGION_DIM", region_dim_default))
+    # Enforce NPZ region features only (no XML/CLIP region pipeline).
+    region_dim = int(os.getenv("REGION_DIM", "2048"))
 
     train_ds = GroundingDataset(
         train_json, npz_dir, img_dir,
-        use_xml_clip_regions=use_xml_clip_regions,
-        use_clip_region_encoder=use_clip_region_encoder,
-        xml_dir=xml_dir,
-        clip_model_name=clip_model_name,
-        clip_device=clip_device,
     )
     dev_ds   = GroundingDataset(
         dev_json, npz_dir, img_dir,
-        use_xml_clip_regions=use_xml_clip_regions,
-        use_clip_region_encoder=use_clip_region_encoder,
-        xml_dir=xml_dir,
-        clip_model_name=clip_model_name,
-        clip_device=clip_device,
     )
     test_ds  = GroundingDataset(
         test_json, npz_dir, img_dir,
-        use_xml_clip_regions=use_xml_clip_regions,
-        use_clip_region_encoder=use_clip_region_encoder,
-        xml_dir=xml_dir,
-        clip_model_name=clip_model_name,
-        clip_device=clip_device,
     )
 
     batch_size = int(os.getenv("BATCH_SIZE", "4"))
@@ -119,7 +83,8 @@ def main():
     excl_ent_type_w = float(os.getenv("EXCL_ENT_TYPE_W", "0.3"))
     excl_pair_alpha = float(os.getenv("EXCL_PAIR_ALPHA", "0.5"))
     excl_pair_beta = float(os.getenv("EXCL_PAIR_BETA", "0.3"))
-    excl_pair_region_sim = os.getenv("EXCL_PAIR_REGION_SIM", "none").strip().lower()
+    # Region similarity is fixed to IoU.
+    excl_pair_region_sim = "iou"
     excl_pair_type_mode = os.getenv("EXCL_PAIR_TYPE_MODE", "neutral").strip().lower()
     excl_pair_type_factor = float(os.getenv("EXCL_PAIR_TYPE_FACTOR", "1.5"))
     excl_pair_name_thr = float(os.getenv("EXCL_PAIR_NAME_THR", "0.5"))
@@ -209,8 +174,7 @@ def main():
     print(
         f"[HP] batch={batch_size} epochs={epochs} lr={lr} temp={temperature} "
         f"| seed={seed} save_best={int(save_best)} "
-        f"| use_xml_clip_regions={int(bool(use_xml_clip_regions))} use_clip_region_encoder={int(bool(use_clip_region_encoder))} "
-        f"region_dim={region_dim} clip_model={clip_model_name} "
+        f"| region_source=npz_only region_dim={region_dim} "
         f"| w(ce={ce_w},cons={cons_w},excl={excl_w},margin={margin_w}) "
         f"| w(info_nce={info_nce_w}) | info_nce_tau={info_nce_tau} info_nce_topk_neg={info_nce_topk_neg} "
         f"| w(ung_push={ung_push_w}) "

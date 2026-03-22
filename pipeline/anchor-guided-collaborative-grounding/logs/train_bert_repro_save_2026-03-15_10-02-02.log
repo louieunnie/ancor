@@ -1,0 +1,22 @@
+[INFO] Wrote config.py (InfoNCE+Excl slim trainer)
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train_infonce_excl.py
+[HP][InfoNCE+Excl] batch=4 epochs=6 lr=8e-06 temp=0.8 | seed=45 save_best=1 | w(excl=0.6,info_nce=1.0) | info_nce_tau=0.05 info_nce_topk_neg=32 | excl_margin=0.3 excl_mode=sim_prob excl_variant=pairwise | excl_pair(alpha=0.5,beta=0.3,region_sim=iou,type_mode=neutral,type_factor=1.5,name_thr=0.5,region_thr=0.5,easy_scale=0.5,hard_scale=1.5)
+[Epoch 0] Loss=0.7675 (excl=0.0003, info_nce=0.7673) | Dev P=1.000 R=0.696 F1=0.821
+  [Dev-by-EntCount] E=1:acc=0.742(510/687,n=687) | E=2:acc=0.598(159/266,n=133) | E=3:acc=0.433(13/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ✅ Best model saved at /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/best_bert_repro_lr8e-6_seed45.pt
+[Epoch 1] Loss=0.5438 (excl=0.0002, info_nce=0.5436) | Dev P=1.000 R=0.710 F1=0.831
+  [Dev-by-EntCount] E=1:acc=0.758(521/687,n=687) | E=2:acc=0.605(161/266,n=133) | E=3:acc=0.467(14/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ✅ Best model saved at /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/best_bert_repro_lr8e-6_seed45.pt
+[Epoch 2] Loss=0.4385 (excl=0.0002, info_nce=0.4383) | Dev P=1.000 R=0.711 F1=0.831
+  [Dev-by-EntCount] E=1:acc=0.767(527/687,n=687) | E=2:acc=0.590(157/266,n=133) | E=3:acc=0.433(13/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ✅ Best model saved at /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/best_bert_repro_lr8e-6_seed45.pt
+[Epoch 3] Loss=0.3377 (excl=0.0002, info_nce=0.3376) | Dev P=1.000 R=0.714 F1=0.833
+  [Dev-by-EntCount] E=1:acc=0.755(519/687,n=687) | E=2:acc=0.617(164/266,n=133) | E=3:acc=0.567(17/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ✅ Best model saved at /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/best_bert_repro_lr8e-6_seed45.pt
+[Epoch 4] Loss=0.2317 (excl=0.0002, info_nce=0.2316) | Dev P=1.000 R=0.734 F1=0.846
+  [Dev-by-EntCount] E=1:acc=0.770(529/687,n=687) | E=2:acc=0.647(172/266,n=133) | E=3:acc=0.600(18/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ✅ Best model saved at /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/best_bert_repro_lr8e-6_seed45.pt
+[Epoch 5] Loss=0.1503 (excl=0.0002, info_nce=0.1502) | Dev P=1.000 R=0.724 F1=0.840
+  [Dev-by-EntCount] E=1:acc=0.764(525/687,n=687) | E=2:acc=0.628(167/266,n=133) | E=3:acc=0.567(17/30,n=10) | E=4:acc=1.000(8/8,n=2)
+[TEST] P=1.000 R=0.724 F1=0.840
+[TEST-by-EntCount] E=1:acc=0.781(538/689,n=689) | E=2:acc=0.621(180/290,n=145) | E=3:acc=0.604(29/48,n=16) | E=4:acc=0.667(8/12,n=3) | E=5:acc=0.500(5/10,n=2)

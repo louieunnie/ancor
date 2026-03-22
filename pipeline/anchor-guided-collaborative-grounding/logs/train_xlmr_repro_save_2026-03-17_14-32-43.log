@@ -1,0 +1,21 @@
+[INFO] Wrote config.py (InfoNCE+Excl slim trainer)
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train_infonce_excl.py
+[HP][InfoNCE+Excl] batch=4 epochs=6 lr=5e-06 temp=0.8 | seed=45 save_best=1 | w(excl=0.6,info_nce=1.0) | info_nce_tau=0.05 info_nce_topk_neg=32 | excl_margin=0.3 excl_mode=sim_prob excl_variant=pairwise | excl_pair(alpha=0.5,beta=0.3,region_sim=iou,type_mode=neutral,type_factor=1.5,name_thr=0.5,region_thr=0.5,easy_scale=0.5,hard_scale=1.5)
+[Epoch 0] Loss=0.8013 (excl=0.0003, info_nce=0.8012) | Dev P=1.000 R=0.692 F1=0.818
+  [Dev-by-EntCount] E=1:acc=0.731(502/687,n=687) | E=2:acc=0.609(162/266,n=133) | E=3:acc=0.467(14/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ✅ Best model saved at /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/best_xlmr_repro_seed45.pt
+[Epoch 1] Loss=0.5822 (excl=0.0003, info_nce=0.5820) | Dev P=1.000 R=0.706 F1=0.828
+  [Dev-by-EntCount] E=1:acc=0.751(516/687,n=687) | E=2:acc=0.609(162/266,n=133) | E=3:acc=0.467(14/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ✅ Best model saved at /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/best_xlmr_repro_seed45.pt
+[Epoch 2] Loss=0.5163 (excl=0.0002, info_nce=0.5162) | Dev P=1.000 R=0.716 F1=0.835
+  [Dev-by-EntCount] E=1:acc=0.766(526/687,n=687) | E=2:acc=0.605(161/266,n=133) | E=3:acc=0.500(15/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ✅ Best model saved at /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/best_xlmr_repro_seed45.pt
+[Epoch 3] Loss=0.4753 (excl=0.0002, info_nce=0.4751) | Dev P=1.000 R=0.711 F1=0.831
+  [Dev-by-EntCount] E=1:acc=0.757(520/687,n=687) | E=2:acc=0.609(162/266,n=133) | E=3:acc=0.500(15/30,n=10) | E=4:acc=1.000(8/8,n=2)
+[Epoch 4] Loss=0.4088 (excl=0.0002, info_nce=0.4087) | Dev P=1.000 R=0.724 F1=0.840
+  [Dev-by-EntCount] E=1:acc=0.767(527/687,n=687) | E=2:acc=0.628(167/266,n=133) | E=3:acc=0.500(15/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ✅ Best model saved at /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/best_xlmr_repro_seed45.pt
+[Epoch 5] Loss=0.3437 (excl=0.0002, info_nce=0.3436) | Dev P=1.000 R=0.724 F1=0.840
+  [Dev-by-EntCount] E=1:acc=0.766(526/687,n=687) | E=2:acc=0.635(169/266,n=133) | E=3:acc=0.467(14/30,n=10) | E=4:acc=1.000(8/8,n=2)
+[TEST] P=1.000 R=0.730 F1=0.844
+[TEST-by-EntCount] E=1:acc=0.790(544/689,n=689) | E=2:acc=0.624(181/290,n=145) | E=3:acc=0.646(31/48,n=16) | E=4:acc=0.500(6/12,n=3) | E=5:acc=0.400(4/10,n=2)

@@ -17,9 +17,9 @@ CLIP_DEVICE="${CLIP_DEVICE:-cpu}"
 NPZ_DIR="${NPZ_DIR:-/workspace/root/data2/twitter_images/all}"
 IMG_DIR="${IMG_DIR:-/workspace/IJCAI2019_data/all_images}"
 
-TRAIN_JSON="/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/input_data/vk_v2_gpt41mini/train.jsonl"
-DEV_JSON="/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/input_data/vk_v2_gpt41mini/dev.jsonl"
-TEST_JSON="/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/input_data/vk_v2_gpt41mini/test.jsonl"
+TRAIN_JSON="${TRAIN_JSON:-/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/input_data/vk_v2_gpt41mini/gmner_gold/train.jsonl}"
+DEV_JSON="${DEV_JSON:-/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/input_data/vk_v2_gpt41mini/dev.jsonl}"
+TEST_JSON="${TEST_JSON:-/workspace/ancor/pipeline/anchor-guided-collaborative-grounding/input_data/vk_v2_gpt41mini/gmner_gold/test.jsonl}"
 
 MODEL_PATH="${MODEL_PATH:-${SCRIPT_DIR}/best_model.pt}"
 SAVE_PATH="${SAVE_PATH:-${SCRIPT_DIR}/runs/inference_results.jsonl}"

@@ -4,9 +4,8 @@ import numpy as np
 import os
 from PIL import Image
 import json
-import xml.etree.ElementTree as ET
 from torchvision import transforms
-from transformers import AutoTokenizer, AutoProcessor, CLIPVisionModel
+from transformers import AutoTokenizer
 
 TOKENIZER = AutoTokenizer.from_pretrained(os.getenv("MODEL_NAME", "roberta-large"))
 IMG_TFORM = transforms.Compose([
@@ -72,17 +71,9 @@ class GroundingDataset(Dataset):
         self.prompt_use_type = _env_flag("PROMPT_USE_TYPE", "1")
         self.prompt_use_context = _env_flag("PROMPT_USE_CONTEXT", "1")
         self.prompt_use_knowledge = _env_flag("PROMPT_USE_KNOWLEDGE", "1")
-
-        self.clip_processor = None
-        self.clip_model = None
-        if self.use_xml_clip_regions or self.use_clip_region_encoder:
-            if not self.xml_dir:
-                # XML mode strictly requires XML. Clip re-encoding mode does not.
-                if self.use_xml_clip_regions:
-                    raise ValueError("xml_dir is required when use_xml_clip_regions=True")
-            self.clip_processor = AutoProcessor.from_pretrained(self.clip_model_name)
-            self.clip_model = CLIPVisionModel.from_pretrained(self.clip_model_name).to(self.clip_device)
-            self.clip_model.eval()
+        # Force NPZ-only region loading regardless of caller options.
+        self.use_xml_clip_regions = False
+        self.use_clip_region_encoder = False
 
         with open(jsonl_path, "r", encoding="utf-8") as f:
             for line in f:
@@ -152,32 +143,14 @@ class GroundingDataset(Dataset):
         return feats, np.asarray(valid_boxes, dtype=np.float32)
 
     def _load_regions(self, item, pil_img):
+        del pil_img
         img_id = item["img"]
         if img_id in self._region_cache:
             cached_feats, cached_boxes = self._region_cache[img_id]
             return cached_feats.clone(), cached_boxes.copy()
-
-        if self.use_xml_clip_regions:
-            boxes = self._load_xml_boxes(img_id)
-            feats, all_boxes = self._clip_encode_boxes(pil_img, boxes)
-            if feats.shape[0] == 0:
-                # Fallback to NPZ if XML is missing/empty for this image.
-                npz = np.load(os.path.join(self.npz_dir, item["img"] + ".npz"))
-                all_boxes = npz["bounding_boxes"].astype(np.float32)
-                feats = torch.tensor(npz["box_features"], dtype=torch.float32)
-        elif self.use_clip_region_encoder:
-            npz = np.load(os.path.join(self.npz_dir, item["img"] + ".npz"))
-            all_boxes = npz["bounding_boxes"].astype(np.float32)
-            boxes = [tuple(map(int, b.tolist())) for b in all_boxes]
-            feats, all_boxes = self._clip_encode_boxes(pil_img, boxes)
-            if feats.shape[0] == 0:
-                # If CLIP encoding fails for some reason, fallback to NPZ region features.
-                feats = torch.tensor(npz["box_features"], dtype=torch.float32)
-                all_boxes = npz["bounding_boxes"].astype(np.float32)
-        else:
-            npz = np.load(os.path.join(self.npz_dir, item["img"] + ".npz"))
-            all_boxes = npz["bounding_boxes"].astype(np.float32)
-            feats = torch.tensor(npz["box_features"], dtype=torch.float32)
+        npz = np.load(os.path.join(self.npz_dir, item["img"] + ".npz"))
+        all_boxes = npz["bounding_boxes"].astype(np.float32)
+        feats = torch.tensor(npz["box_features"], dtype=torch.float32)
 
         self._region_cache[img_id] = (feats, all_boxes)
         return feats.clone(), all_boxes.copy()
@@ -258,16 +231,9 @@ class InferenceDataset(Dataset):
         self.prompt_use_type = _env_flag("PROMPT_USE_TYPE", "1")
         self.prompt_use_context = _env_flag("PROMPT_USE_CONTEXT", "1")
         self.prompt_use_knowledge = _env_flag("PROMPT_USE_KNOWLEDGE", "1")
-
-        self.clip_processor = None
-        self.clip_model = None
-        if self.use_xml_clip_regions or self.use_clip_region_encoder:
-            if not self.xml_dir:
-                if self.use_xml_clip_regions:
-                    raise ValueError("xml_dir is required when use_xml_clip_regions=True")
-            self.clip_processor = AutoProcessor.from_pretrained(self.clip_model_name)
-            self.clip_model = CLIPVisionModel.from_pretrained(self.clip_model_name).to(self.clip_device)
-            self.clip_model.eval()
+        # Force NPZ-only region loading regardless of caller options.
+        self.use_xml_clip_regions = False
+        self.use_clip_region_encoder = False
 
         with open(jsonl_path, "r", encoding="utf-8") as f:
             for line in f:
@@ -333,30 +299,14 @@ class InferenceDataset(Dataset):
         return feats, np.asarray(valid_boxes, dtype=np.float32)
 
     def _load_regions(self, item, pil_img):
+        del pil_img
         img_id = item["img"]
         if img_id in self._region_cache:
             cached_feats, cached_boxes = self._region_cache[img_id]
             return cached_feats.clone(), cached_boxes.copy()
-
-        if self.use_xml_clip_regions:
-            boxes = self._load_xml_boxes(img_id)
-            feats, all_boxes = self._clip_encode_boxes(pil_img, boxes)
-            if feats.shape[0] == 0:
-                npz = np.load(os.path.join(self.npz_dir, item["img"] + ".npz"))
-                all_boxes = npz["bounding_boxes"].astype(np.float32)
-                feats = torch.tensor(npz["box_features"], dtype=torch.float32)
-        elif self.use_clip_region_encoder:
-            npz = np.load(os.path.join(self.npz_dir, item["img"] + ".npz"))
-            all_boxes = npz["bounding_boxes"].astype(np.float32)
-            boxes = [tuple(map(int, b.tolist())) for b in all_boxes]
-            feats, all_boxes = self._clip_encode_boxes(pil_img, boxes)
-            if feats.shape[0] == 0:
-                feats = torch.tensor(npz["box_features"], dtype=torch.float32)
-                all_boxes = npz["bounding_boxes"].astype(np.float32)
-        else:
-            npz = np.load(os.path.join(self.npz_dir, item["img"] + ".npz"))
-            all_boxes = npz["bounding_boxes"].astype(np.float32)
-            feats = torch.tensor(npz["box_features"], dtype=torch.float32)
+        npz = np.load(os.path.join(self.npz_dir, item["img"] + ".npz"))
+        all_boxes = npz["bounding_boxes"].astype(np.float32)
+        feats = torch.tensor(npz["box_features"], dtype=torch.float32)
 
         self._region_cache[img_id] = (feats, all_boxes)
         return feats.clone(), all_boxes.copy()

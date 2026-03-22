@@ -1,0 +1,23 @@
+[INFO] Wrote config.py (InfoNCE+Excl slim trainer)
+[INFO] Start training: /workspace/conda-envs/anc/bin/python main_train_infonce_excl.py
+[HP][InfoNCE+Excl] batch=4 epochs=6 lr=5e-06 temp=0.8 | seed=45 save_best=1 | w(excl=0.6,info_nce=1.0) | info_nce_tau=0.05 info_nce_topk_neg=32 | excl_margin=0.3 excl_mode=sim_prob excl_variant=pairwise | excl_pair(alpha=0.5,beta=0.3,region_sim=iou,type_mode=neutral,type_factor=1.5,name_thr=0.5,region_thr=0.5,easy_scale=0.5,hard_scale=1.5)
+[Epoch 0] Loss=0.7970 (excl=0.0003, info_nce=0.7968) | Dev P=1.000 R=0.697 F1=0.822
+  [Dev-by-EntCount] E=1:acc=0.739(508/687,n=687) | E=2:acc=0.609(162/266,n=133) | E=3:acc=0.433(13/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ✅ Best model saved at /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/best_roberta_fmnerg_seed45.pt
+[Epoch 1] Loss=0.5722 (excl=0.0003, info_nce=0.5721) | Dev P=1.000 R=0.712 F1=0.832
+  [Dev-by-EntCount] E=1:acc=0.761(523/687,n=687) | E=2:acc=0.609(162/266,n=133) | E=3:acc=0.433(13/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ✅ Best model saved at /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/best_roberta_fmnerg_seed45.pt
+[Epoch 2] Loss=0.5056 (excl=0.0002, info_nce=0.5054) | Dev P=1.000 R=0.720 F1=0.838
+  [Dev-by-EntCount] E=1:acc=0.767(527/687,n=687) | E=2:acc=0.617(164/266,n=133) | E=3:acc=0.500(15/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ✅ Best model saved at /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/best_roberta_fmnerg_seed45.pt
+[Epoch 3] Loss=0.4564 (excl=0.0002, info_nce=0.4563) | Dev P=1.000 R=0.721 F1=0.838
+  [Dev-by-EntCount] E=1:acc=0.767(527/687,n=687) | E=2:acc=0.617(164/266,n=133) | E=3:acc=0.533(16/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ✅ Best model saved at /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/best_roberta_fmnerg_seed45.pt
+[Epoch 4] Loss=0.3910 (excl=0.0002, info_nce=0.3909) | Dev P=1.000 R=0.723 F1=0.839
+  [Dev-by-EntCount] E=1:acc=0.764(525/687,n=687) | E=2:acc=0.628(167/266,n=133) | E=3:acc=0.533(16/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ✅ Best model saved at /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/best_roberta_fmnerg_seed45.pt
+[Epoch 5] Loss=0.3206 (excl=0.0002, info_nce=0.3205) | Dev P=1.000 R=0.725 F1=0.840
+  [Dev-by-EntCount] E=1:acc=0.767(527/687,n=687) | E=2:acc=0.635(169/266,n=133) | E=3:acc=0.467(14/30,n=10) | E=4:acc=1.000(8/8,n=2)
+  ✅ Best model saved at /workspace/ancor/pipeline/anchor-guided-collaborative-grounding/runs/best_roberta_fmnerg_seed45.pt
+[TEST] P=1.000 R=0.732 F1=0.845
+[TEST-by-EntCount] E=1:acc=0.792(546/689,n=689) | E=2:acc=0.631(183/290,n=145) | E=3:acc=0.583(28/48,n=16) | E=4:acc=0.500(6/12,n=3) | E=5:acc=0.500(5/10,n=2)

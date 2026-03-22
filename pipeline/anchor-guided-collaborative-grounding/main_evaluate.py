@@ -164,8 +164,8 @@ def evaluate(pred_file, gold_file, xml_dir, iou_thresh=0.5):
 
 if __name__ == "__main__":
     result = evaluate(
-        "your_prediction_file.jsonl",
-        "gold_jsonl_file.jsonl",
+        "runs/inference_infonce_excl_2026-03-14_12-28-13_8416_result.jsonl",
+        "input_data/vk_v2_gpt41mini/test.jsonl",
         "path_to_xml_directory",
     )
     print(json.dumps(result, indent=2))

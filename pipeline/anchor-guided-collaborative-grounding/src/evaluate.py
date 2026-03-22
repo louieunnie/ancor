@@ -113,39 +113,59 @@ def evaluate_dev(model, device, loader, iou_thresh=0.5):
     return p, r, f1, bucket_acc
 
 @torch.no_grad()
-def inference_and_save(model, device, loader, save_path="inference_results.jsonl"):
+def inference_and_save(
+    model,
+    device,
+    loader,
+    save_path="inference_results.jsonl",
+    save_all_entities_path=None,
+):
     model.eval()
     results = []
+    all_entities_results = []
     joint_mode = os.getenv("JOINT_INFER_MODE", "none").strip().lower()
 
     with open(save_path, "w", encoding="utf-8") as f:
+        fout_all = None
+        if save_all_entities_path:
+            os.makedirs(os.path.dirname(save_all_entities_path) or ".", exist_ok=True)
+            fout_all = open(save_all_entities_path, "w", encoding="utf-8")
         for batch_idx, batch in enumerate(loader):
             tb = {k: v.to(device) if isinstance(v, torch.Tensor) else v for k, v in batch.items()}
-            _, probs, _, _, _ = model(tb["input_ids"], tb["attn_masks"], tb["region_feats"])
-            B, E, R = probs.shape
+            B = tb["input_ids"].shape[0]
 
             for b in range(B):
-                sample = loader.dataset.samples[batch_idx * loader.batch_size + b]
+                sample_idx = int(batch["index"][b].item())
+                sample = loader.dataset.samples[sample_idx]
                 num_entities = len(sample["entities"])
-                probs_e = probs[b, :num_entities]  # [E, R]
-                if joint_mode == "greedy_conflict":
-                    selected_regions = _select_regions_greedy_conflict(probs_e)
-                else:
-                    selected_regions = probs_e.argmax(dim=-1)
+                active_indices = [
+                    i for i, ent in enumerate(sample["entities"])
+                    if int(ent.get("pred_label", 1)) != 0
+                ]
+
+                pred_boxes = [None] * num_entities
+                if active_indices:
+                    input_ids_active = tb["input_ids"][b, active_indices].unsqueeze(0)
+                    attn_masks_active = tb["attn_masks"][b, active_indices].unsqueeze(0)
+                    region_feats_b = tb["region_feats"][b].unsqueeze(0)
+
+                    _, probs_active, _, _, _ = model(input_ids_active, attn_masks_active, region_feats_b)
+                    probs_e = probs_active[0, :len(active_indices)]  # [E_active, R]
+                    if joint_mode == "greedy_conflict":
+                        selected_regions = _select_regions_greedy_conflict(probs_e)
+                    else:
+                        selected_regions = probs_e.argmax(dim=-1)
+
+                    for local_e, original_e in enumerate(active_indices):
+                        pred_r = int(selected_regions[local_e].item())
+                        pred_boxes[original_e] = tb["region_boxes"][b, pred_r].cpu().numpy().tolist()
 
                 entity_results = []
                 for e, ent in enumerate(sample["entities"]):
-                    # pred_label=0 → box=None
-                    if ent.get("pred_label", 1) == 0:
-                        pred_box = None
-                    else:
-                        pred_r = int(selected_regions[e].item())
-                        pred_box = tb["region_boxes"][b, pred_r].cpu().numpy().tolist()
-
                     entity_results.append({
                         "entity": ent["text"],
                         "ent_type": ent["type"],
-                        "pred_box": pred_box  
+                        "pred_box": pred_boxes[e],
                     })
 
                 result = {
@@ -155,4 +175,28 @@ def inference_and_save(model, device, loader, save_path="inference_results.jsonl
                 results.append(result)
                 f.write(json.dumps(result, ensure_ascii=False) + "\n")
 
+                # Additional output: explicitly include pred_label for every entity.
+                # pred_label==0 keeps pred_box=None without region selection.
+                if fout_all is not None:
+                    all_entity_results = []
+                    for src_ent, ent_item in zip(sample["entities"], entity_results):
+                        all_entity_results.append({
+                            "entity": ent_item.get("entity"),
+                            "ent_type": ent_item.get("ent_type"),
+                            "pred_label": int(src_ent.get("pred_label", 1)),
+                            "pred_box": ent_item.get("pred_box"),
+                        })
+
+                    all_result = {
+                        "img_id": sample["img"],
+                        "entities": all_entity_results,
+                    }
+                    all_entities_results.append(all_result)
+                    fout_all.write(json.dumps(all_result, ensure_ascii=False) + "\n")
+
+        if fout_all is not None:
+            fout_all.close()
+
     print(f"[INFO] Inference results saved to {save_path}")
+    if save_all_entities_path:
+        print(f"[INFO] Inference all-entities results saved to {save_all_entities_path}")

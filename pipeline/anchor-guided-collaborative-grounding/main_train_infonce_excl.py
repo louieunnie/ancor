@@ -34,59 +34,23 @@ def main():
             parts.append(f"E={k}:acc={s['acc']:.3f}({s['correct']}/{s['total']},n={s['samples']})")
         return " | ".join(parts)
 
-    try:
-        from config import use_xml_clip_regions
-    except Exception:
-        use_xml_clip_regions = False
-    try:
-        from config import use_clip_region_encoder
-    except Exception:
-        use_clip_region_encoder = False
-    try:
-        from config import xml_dir
-    except Exception:
-        xml_dir = None
-    try:
-        from config import clip_model_name
-    except Exception:
-        clip_model_name = "openai/clip-vit-base-patch32"
-    try:
-        from config import clip_device
-    except Exception:
-        clip_device = "cpu"
-
-    region_dim_default = "768" if (bool(use_xml_clip_regions) or bool(use_clip_region_encoder)) else "2048"
-    region_dim = int(os.getenv("REGION_DIM", region_dim_default))
+    # Enforce NPZ region features only (no XML/CLIP region pipeline).
+    region_dim = int(os.getenv("REGION_DIM", "2048"))
 
     train_ds = GroundingDataset(
         train_json,
         npz_dir,
         img_dir,
-        use_xml_clip_regions=use_xml_clip_regions,
-        use_clip_region_encoder=use_clip_region_encoder,
-        xml_dir=xml_dir,
-        clip_model_name=clip_model_name,
-        clip_device=clip_device,
     )
     dev_ds = GroundingDataset(
         dev_json,
         npz_dir,
         img_dir,
-        use_xml_clip_regions=use_xml_clip_regions,
-        use_clip_region_encoder=use_clip_region_encoder,
-        xml_dir=xml_dir,
-        clip_model_name=clip_model_name,
-        clip_device=clip_device,
     )
     test_ds = GroundingDataset(
         test_json,
         npz_dir,
         img_dir,
-        use_xml_clip_regions=use_xml_clip_regions,
-        use_clip_region_encoder=use_clip_region_encoder,
-        xml_dir=xml_dir,
-        clip_model_name=clip_model_name,
-        clip_device=clip_device,
     )
 
     batch_size = int(os.getenv("BATCH_SIZE", "4"))
@@ -107,7 +71,10 @@ def main():
     excl_variant = os.getenv("EXCL_VARIANT", "pairwise").strip().lower()
     excl_pair_alpha = float(os.getenv("EXCL_PAIR_ALPHA", "0.5"))
     excl_pair_beta = float(os.getenv("EXCL_PAIR_BETA", "0.3"))
-    excl_pair_region_sim = os.getenv("EXCL_PAIR_REGION_SIM", "iou").strip().lower()
+    _g_raw = os.getenv("EXCL_PAIR_GAMMA", "").strip()
+    excl_pair_gamma = float(_g_raw) if _g_raw else None
+    # Region similarity is fixed to IoU.
+    excl_pair_region_sim = "iou"
     excl_pair_type_mode = os.getenv("EXCL_PAIR_TYPE_MODE", "neutral").strip().lower()
     excl_pair_type_factor = float(os.getenv("EXCL_PAIR_TYPE_FACTOR", "1.5"))
     excl_pair_name_thr = float(os.getenv("EXCL_PAIR_NAME_THR", "0.5"))
@@ -139,7 +106,9 @@ def main():
         f"| w(excl={excl_w},info_nce={info_nce_w}) "
         f"| info_nce_tau={info_nce_tau} info_nce_topk_neg={info_nce_topk_neg} "
         f"| excl_margin={excl_margin} excl_mode={excl_mode} excl_variant={excl_variant} "
-        f"| excl_pair(alpha={excl_pair_alpha},beta={excl_pair_beta},region_sim={excl_pair_region_sim},"
+        f"| excl_pair(alpha={excl_pair_alpha},beta={excl_pair_beta},"
+        f"gamma={'explicit:' + str(excl_pair_gamma) if excl_pair_gamma is not None else 'implicit:1-a-b'},"
+        f"region_sim={excl_pair_region_sim},"
         f"type_mode={excl_pair_type_mode},type_factor={excl_pair_type_factor},"
         f"name_thr={excl_pair_name_thr},region_thr={excl_pair_region_thr},"
         f"easy_scale={excl_pair_easy_scale},hard_scale={excl_pair_hard_scale})"
@@ -161,6 +130,7 @@ def main():
             excl_variant=excl_variant,
             excl_pair_alpha=excl_pair_alpha,
             excl_pair_beta=excl_pair_beta,
+            excl_pair_gamma=excl_pair_gamma,
             excl_pair_region_sim=excl_pair_region_sim,
             excl_pair_type_mode=excl_pair_type_mode,
             excl_pair_type_factor=excl_pair_type_factor,
